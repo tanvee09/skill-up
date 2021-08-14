@@ -18,19 +18,19 @@ export default function Login() {
       setError("");
       setLoading(true);
       const user=await login(emailRef.current.value, passwordRef.current.value);
-      const uid=user.user.uid;
-    //   const response=await axios.post('/role',{
-    //     uid:uid
-    //   });
-    //   console.log(response);
-    //   const role=response.data.role
-    //   console.log("role",role);
-    //   if(role==="student")
-    //   {
-    //     history.push('/studentLanding');
-    //   }else if (role==="instructor"){
-    //     history.push('/instructorLanding');
-    //   }
+      const _id=user.user.uid;
+      console.log(_id);
+      const response=await axios.post('/role',{
+        _id:_id
+      });
+      const role=response.data.role
+      if(role==="student")
+      {
+        history.push('/discuss');
+      }
+      else if (role==="instructor"){
+        history.push('/courses');
+      }
     } catch {
       setError("Failed to Sign In");
     }

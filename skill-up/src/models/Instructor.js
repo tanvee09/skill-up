@@ -1,3 +1,5 @@
+const { Users } = require('./User');
+const { Course } = require('./Course.js');
 const mongoose = require('mongoose');
 const { Users } = require('./User');
 

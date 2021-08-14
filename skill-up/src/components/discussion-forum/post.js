@@ -7,6 +7,7 @@ import profileimg from './../../assets/profile.png'
 export default function DiscussPost() {   
   return (
     <>
+    <div className="discuss post">
     <Container id="post-box">
 		  <Card.Title id="username">
 				<img src={profileimg} alt='Profile' className="profile-image"/> tanvee09
@@ -56,6 +57,7 @@ export default function DiscussPost() {
         </ListGroup.Item>
       </ListGroup>
     </Container>
+    </div>
     </>
   );
 };

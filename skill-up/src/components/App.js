@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './footer'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { AuthProvider } from "../contexts/AuthContext";
 import Discussion from './discussion-forum/discussion';
@@ -47,6 +48,7 @@ function App() {
             <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
           </Switch>
         </AuthProvider>
+        <Footer />
       </div>
     </Router>
   );

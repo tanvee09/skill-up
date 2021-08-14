@@ -61,11 +61,14 @@
       background-image:url("../assets/books.jpg");
       background-size: cover;
   }
-  .landing .cards .card-header{
+  .landing .card .card-header{
       background-color:#f5f5ef;
-      border:0 solid #f5f5ef;
       text-align: center;
+      border:none;
   }
+  .landing .card{
+    border:none !important;
+}
   .landing.card-body{
     padding:0;
     border:none;
@@ -87,6 +90,7 @@
 }
 .landing .carousel-outer{
   padding:20px;
+  background-color: #ffb347;
 }
 .landing .container{
   box-shadow:none!important;

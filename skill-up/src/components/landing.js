@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from './footer'
 import collage from '../assets/center.jpg'
 import laptop from '../assets/laptop.jpg'
 import block from '../assets/block.jpg'
@@ -105,7 +104,6 @@ export default function landing() {
           </Card.Body>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -6,11 +6,11 @@
   padding: 1em 1.5em;
 }
 
-.nav-tabs {
+.profileContainer .nav-tabs {
   font-weight: bold;
 }
 
-.nav-item, .nav-item:hover {
+.profileContainer .nav-item, .profileContainer .nav-item:hover {
   color: black;
 }
 

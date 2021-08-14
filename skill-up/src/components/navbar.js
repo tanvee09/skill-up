@@ -8,7 +8,7 @@ export default function NavBar() {
       <Navbar sticky="top" expand="lg" >
         <Navbar.Brand>
           <Link to="/" >
-          <span className="navItem">कुकुरमुत्ता</span>
+          <span className="navItem">Skill-UP</span>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle

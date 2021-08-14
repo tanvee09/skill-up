@@ -39,6 +39,7 @@ export default function SignUp() {
       console.log("UID", x.user.uid);
       if(student)
       {
+        console.log(2,emailRef.current.value);
         const response=await axios.post("/user", {
           _id: x.user.uid,
           name: nameRef.current.value,
@@ -52,7 +53,7 @@ export default function SignUp() {
         await history.push("/landing");
       }
       else{
-        const response = await axios.post("/instructor", {
+        const response = await axios.post("/user", {
           _id: x.user.uid,
           name: nameRef.current.value,
           phoneNo: phoneRef.current.value,

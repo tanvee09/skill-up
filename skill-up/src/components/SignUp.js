@@ -52,11 +52,6 @@ export default function SignUp() {
         });
         console.log(response);
 
-        // response = await axios.post("/student",{
-        //   _id:x.user.uid
-        //   user:x.user.uid,
-        //   enrolled
-        // })
         await history.push("/");
       }
       else{

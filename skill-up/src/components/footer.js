@@ -1,4 +1,5 @@
 import React from "react";
+import './footer.css';
 import logo from '../assets/books.jpg'
 
 export default function Footer() {

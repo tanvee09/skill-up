@@ -1,11 +1,13 @@
+const { Users } = require('./User');
+const { Course } = require('./Course.js');
 const mongoose = require('mongoose');
-const { User } = require('./User');
+const { Users } = require('./User');
 
 const instructorSchema = new mongoose.Schema({
     _id : String,
     user: {
-        type : mongoose.Schema.Types.String,
-        ref = User,
+        type : String,
+        ref : Users,
         unique: true
     }
 });

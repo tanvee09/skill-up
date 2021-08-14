@@ -51,6 +51,7 @@ export default function SignUp() {
           instructor: false
         });
         console.log(response);
+
         await history.push("/");
       }
       else{

@@ -6,6 +6,7 @@ import profileimg from './../../assets/profile.png'
 export default function Discussion() {   
   return (
     <>
+    <div className="discuss">
     <Container id="post-box">
       <Navbar id="discussion-heading" className="justify-content-between">
         <h1 class="navbar-brand"><strong>Discussion Forum</strong></h1>
@@ -56,6 +57,7 @@ export default function Discussion() {
         </Card.Body>
       </Card>
     </Container>
+    </div>
     </>
   );
 };

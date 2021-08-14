@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+#profileContainer {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: 1em 1.5em;
+}
+
+.nav-tabs {
+  font-weight: bold;
+}
+
+.nav-item, .nav-item:hover {
+  color: black;
+}
+
+.profileImg {
+  border-radius: 50%;
+  height: 10em;
+}
+
+#detailsContainer {
+  background-color: #e9e4e4;
+  padding: 2em 15%;
+  border-radius: 4px;
+}
+
+.fullname {
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 2em;
+  font-weight: bold;
+  font-family: 'Balsamiq Sans', cursive;
+  text-decoration: underline;
+  color: #5F513F;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.value {
+  border-bottom: 1px solid #5F513F;
+  margin-bottom: 2em;
+}
+
+.sep {
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 100%;
+  border-bottom: 1px solid #5F513F;
+}

@@ -26,8 +26,8 @@ function App() {
             <Route exact path="/" component={Landing}></Route>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            <Route exact path = '/courses' render={CourseList} />
-            <Route exact path = '/courses/:id' render={Course} />
+            <Route exact path = '/courses' component={CourseList} />
+            <Route exact path = '/courses/:id' component={Course} />
           </Switch>
         </AuthProvider>
         <Footer />

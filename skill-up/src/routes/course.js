@@ -22,13 +22,21 @@ const date = require('date-and-time');
 const { Course } = require("../models/Course");
 const { Student } = require("../models/Student");
 const { Instructor } = require("../models/Instructor");
-const { User } = require('../models/User');
+const { Users } = require('../models/User');
 
 const router = require("express").Router();
 
 router.get("/api/courses", async (req, res) => {
     try {
-        res.send(Course.find({} ,{'Lectures':0}));
+        Course.find({} ,{'Lectures':0} , (courses,err)=>{
+          if(!err)
+          {
+            console.log("courses" , courses)
+            res.send(courses);
+          }  
+          else
+            console.log(err)
+        })
     } catch (e) {
         console.log(e);
     }
@@ -56,7 +64,7 @@ router.get("api/courses/:id", async (req, res) => {
           inst_name = '' 
           inst_img = ''
           Course.findbyId(courseid , (course, err)=>{
-            User.findById(course.instructor , (user,err) => {
+            Users.findById(course.instructor , (user,err) => {
               inst_name = user.name
             })
           })
@@ -76,7 +84,7 @@ router.post("api/courses/:id", (req, res)=>{
       //userid = req.user.id
         Instructor.find({userid} , (user , err) => {
         if (user.id == Course.findbyId(courseid).instructor )
-          let newLec ={
+          newLec ={
             topic: req.body.topic,
             content: req.body.content,
             date : date.format(new Date(), 'ddd, MMM DD YYYY')

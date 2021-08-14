@@ -17,16 +17,8 @@ const userSchema = new mongoose.Schema({
     address :{
         type: String,
     },
-    student : {
-        type : Boolean,
-        defaultValue : false
-    },
-    instructor : {
-        type : Boolean,
-        defaultValue : false
-    }
 });
 
-const User = mongoose.model("user" , userSchema)
+const Users = mongoose.model("Users" , userSchema)
 
-module.exports = {User}
+module.exports = {Users}

@@ -35,6 +35,7 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
+      console.log("SignUp");
       const x = await signup(emailRef.current.value, passwordRef.current.value);
       console.log("UID", x.user.uid);
       if(student)
@@ -50,7 +51,7 @@ export default function SignUp() {
           instructor: false
         });
         console.log(response);
-        await history.push("/landing");
+        await history.push("/");
       }
       else{
         const response = await axios.post("/user", {
@@ -63,7 +64,7 @@ export default function SignUp() {
           instructor: true
         });
         console.log(response);
-        history.push("/landing");
+        history.push("/");
       }
       console.log("SignUp");
     } catch {

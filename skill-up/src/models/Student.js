@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-import { User } from 'User.js'
-import { Course } from 'Course.js'
+const { Users } =  require('./User.js')
+const { Course } = require('./Course.js')
 
 
 const studentSchema = new mongoose.Schema({
@@ -8,7 +8,7 @@ const studentSchema = new mongoose.Schema({
     
     userid: {
         type : mongoose.Schema.Types.String,
-        ref = User,
+        ref : Users,
         unique : true
     },
     

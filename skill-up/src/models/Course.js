@@ -1,5 +1,4 @@
-import { Instructor } from 'Instructor.js';
-import { Lecture } from './Lecture';
+const { Instructor } = require('./Instructor.js');
 const mongoose = require('mongoose');
 
 const lectureSchema = new mongoose.Schema({

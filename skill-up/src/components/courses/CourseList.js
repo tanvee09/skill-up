@@ -17,8 +17,12 @@ class CourseList extends React.Component{
     }
 
     componentDidMount(){
-        fetch('/api/courses')
-        .then(response => response.json()).then(courses => this.setState({courses : courses}))
+        console.log("from component did mount");
+        await fetch('/api/courses')
+        .then(response => {
+            console.log("from component did mount");
+            response.json().then(courses => this.setState({courses : courses})
+        )})
     }
 
     render() {
@@ -32,6 +36,8 @@ class CourseList extends React.Component{
         const arr = filtered.map( ({title,instructor,intro}) =>{ 
                 return(<CoursePreview title={title} instructor={instructor} intro={intro} />)
         });
+
+        console.log(filtered , arr, courses , "render")
 
         return (<div>
             <Container id="post-box">

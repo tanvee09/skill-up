@@ -13,8 +13,12 @@ import SignUp from './SignUp';
 import Profile from './profile/profilepage';
 import AddLecture from './courses/AddLecture';
 import Course from './courses/Course';
+import InstructorLanding from './InstructorLanding';
+import PrivateRoute from './PrivateRoute';
+import AddCourse from './AddCourse';
 
 function App() {
+  const courses = {};
   return (
     <Router>
       <Navbar />
@@ -30,6 +34,9 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route exact path = '/courses' component={CourseList} />
             <Route exact path = '/courses/:id' component={Course} />
+            <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
+            <PrivateRoute path="/instructorLanding" component={InstructorLanding} />
+            <PrivateRoute path="/addCourse" component={AddCourse} />
           </Switch>
         </AuthProvider>
         <Footer />

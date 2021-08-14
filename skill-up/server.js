@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const cors = require('cors');
 const userRoute = require("./src/routes/user");
 require("dotenv").config();
@@ -11,8 +10,8 @@ const uri = process.env.MONGO_URI;
 const port = process.env.PORT || 8080;
 
 app.use(morgan("tiny"));
-app.use(bodyParser.json({limit: '100mb'}));
-app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
+app.use(express.json({limit: '100mb'}));
+app.use(express.urlencoded({limit: '100mb', extended: true}));
 app.use(userRoute);
 app.use(cors());
 

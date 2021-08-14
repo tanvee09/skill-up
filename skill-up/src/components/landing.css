@@ -62,10 +62,13 @@
       background-size: cover;
   }
   .cards .card-header{
-      background:#f5f5ef;
+      background-color:#f5f5ef;
       border:0 solid #f5f5ef;
-      padding-top:4rem;
       text-align: center;
+  }
+  .card-body{
+    background-color:none !important;
+    padding:0;
   }
   .card2{
     display:flex;
@@ -84,5 +87,8 @@
 }
 .carousel-outer{
   padding:20px;
-  align-items:center;
+}
+.container{
+  box-shadow:none!important;
+  height:auto!important;
 }

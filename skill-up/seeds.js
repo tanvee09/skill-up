@@ -10,8 +10,8 @@ mongoose.connect('mongodb://localhost:27017/skillUp', { useNewUrlParser: true, u
                 name: "Kopal",
                 email: "kopal@KADT.com",
                 phoneNo : "+91 00000000"
-            }
-            ))
+            })
+        )
         Course.deleteMany({}).then((err, result) => {
             Users.find({ name: "Kopal" }).then((userone) => {
                 var id = userone[0]._id;

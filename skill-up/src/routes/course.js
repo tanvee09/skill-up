@@ -28,20 +28,24 @@ const router = require("express").Router();
 
 router.get("/api/courses", async (req, res) => {
     try {
-        Course.find({} ,{'Lectures':0} , async (courses,err)=>{
+        Course.find({} ,{'Lectures':0} , async (err ,courses)=>{
           if(!err)
           {
-            console.log("courses" , courses)
-            await courses.map(async (course) => {
-              inst_name = ''
-              await Instructor.findById(course.instructor , (userid , err)=>{
-                User.findById(userid , (user,err)=>{
-                   inst_name = user.name
-                })
+            console.log("router")
+            const req_courses = await courses.map(async (course) => {
+              console.log("single" ,course)
+              await Users.find({} , (err , user)=>{
+                console.log(typeof(user[0].id) , user[0].id , user[0]._id==course.instructor)
               })
-              course['inst_name'] = inst_name
+              await Users.findOne({id:course.instructor} , (err, user)=>{
+                console.log(err , user)
+                if(!err && user!=null)
+                  course["inst_name"] = user.name  
+                  console.log("single" ,course)
+                })
               return course
             })
+            console.log("courses" , req_courses)
             res.send(courses);
           }  
           else
@@ -57,30 +61,26 @@ router.get("api/courses/:id", async (req, res) => {
     try {
       //check authenticated
         // userid = req.user.id
-        isStudent = false
+        isStudent = true
         isInstructor = false
-        await Student.find({userid} , (user , err) => {
-          if (courseid in user.enrolled)
-            isStudent = true
+        inst_name = ''
+        req_course = {}
+
+        await Student.find({uid :userid, cid : courseid} , (err ,user) => {
+          if (user == null || err)
+            isStudent = false
         })
 
-        await Instructor.find({userid} , (user , err) => {
-          if (user.id == Course.findbyId(courseid).instructor )
-            isInstructor =  true
+        await Course.findById(courseid , async (err , course)=> {
+          req_course = course
+          await User.findById(course.instructor , (err, user)=>{
+            inst_name = user.name
+          })
         })
 
         if (student || instructor)
         {
-          inst_name = '' 
-          inst_img = ''
-          course = {}
-          await Course.findbyId(courseid , (result, err)=>{
-            course = result
-            Users.findById(course.instructor , (user,err) => {
-              inst_name = user.name
-            })
-          })
-          res.send( {access : false, course : course, isInstructor , instructor :{name:inst_name} });
+          res.send( {access : true, course : req_course, isInstructor , instructor :{name:inst_name} });
         }  
         else
           res.send ({access : false})

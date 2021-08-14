@@ -13,6 +13,7 @@ import SignUp from './SignUp';
 import Profile from './profile/profilepage';
 import AddLecture from './courses/AddLecture';
 import Course from './courses/Course';
+import 'tachyons';
 
 function App() {
   return (

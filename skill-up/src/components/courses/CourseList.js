@@ -20,7 +20,7 @@ class CourseList extends React.Component{
         console.log("from component did mount");
         await fetch('/api/courses')
         .then(response => {
-            console.log("from component did mount");
+            console.log(response);
             response.json().then(courses => this.setState({courses : courses})
         )})
     }
@@ -29,7 +29,7 @@ class CourseList extends React.Component{
         const {courses ,searchField} = this.state
         const filtered = courses.filter((course) => {
             return (
-                course.name.toLowerCase().includes(searchField) || course.instructor.toLowerCase.includes(searchField)
+                course.title.toLowerCase().includes(searchField) /* || course.inst_name.toLowerCase.includes(searchField) */
             )
         })
 

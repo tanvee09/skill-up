@@ -1,13 +1,15 @@
 import React from 'react'
 import Footer from './footer'
 import collage from '../assets/center.jpg'
+import laptop from '../assets/laptop.jpg'
+import block from '../assets/block.jpg'
 import logo from '../assets/books.jpg'
 import {Jumbotron, Card,Carousel} from 'react-bootstrap'
 import './landing.css'
 export default function landing() {
   return (
     //set photo of background
-    <div className="w-100 align-content-center justify-content-center">
+    <div className="landing w-100 align-content-center justify-content-center">
       <div className="top">
         <div className="head" >
           <div className="text-center h1 text-uppercase heading-primary-main ml-5 mt-5"> Skill-up</div>
@@ -35,7 +37,7 @@ export default function landing() {
         <Carousel.Item>
           <img
             className=" w-100"
-            src={collage}
+            src={laptop}
             alt="learning"
           />
 
@@ -47,7 +49,7 @@ export default function landing() {
         <Carousel.Item>
           <img
             className=" w-100"
-            src={logo}
+            src={laptop}
             alt="Helping"
           />
             <Carousel.Caption>
@@ -58,7 +60,7 @@ export default function landing() {
         <Carousel.Item>
           <img
             className=" w-100"
-            src={logo}
+            src={block}
             alt="Lab Inspection"
           />
             <Carousel.Caption>

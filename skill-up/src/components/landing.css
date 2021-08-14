@@ -1,4 +1,4 @@
-.top{
+.landing .top{
     display:flex;
     height: 70vh;
     flex-direction: column;
@@ -8,7 +8,7 @@
     background-size: cover;
     position: relative;
 }
-.head
+.landing .head
 {
  position: absolute;
   top: 20%;
@@ -16,7 +16,7 @@
   color:rgb(192, 69, 20);
   font-size: 50px;
 }
-.heading-primary {
+.landing .heading-primary {
     color: rgb(14, 41, 44);
     text-transform: uppercase;
     backface-visibility: hidden;
@@ -26,29 +26,29 @@
     font-weight: 300;
     font-size: 25px;
   }
-  .heading-primary-main {
+  .landing .heading-primary-main {
     display: block;
     font-size: 60px;
     font-weight: 700;
     letter-spacing: 35px;
   }
-  .div2{
+  .landing .div2{
     margin:0;
     padding:0;
   }
-  .jumbo{
+  .landing .jumbo{
       display:flex;
       flex-direction:row;
       justify-content: center;
       background:#f5f5ef;
   }
-  .div2 .jumbotron{
+  .landing .div2 .jumbotron{
     margin-bottom:0;
     padding:80px;
     border:none;
     background:#f5f5ef;
   }
-  .mFarm{
+  .landing .mFarm{
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -56,21 +56,21 @@
       background:#f5f5ef;
       padding-left: 1rem;
   }
-  .brown{
+  .landing .brown{
     min-width:300px;
       background-image:url("../assets/books.jpg");
       background-size: cover;
   }
-  .cards .card-header{
+  .landing .cards .card-header{
       background-color:#f5f5ef;
       border:0 solid #f5f5ef;
       text-align: center;
   }
-  .card-body{
-    background-color:none !important;
+  .landing.card-body{
     padding:0;
+    border:none;
   }
-  .card2{
+  .landing .card2{
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -78,17 +78,17 @@
     background:#f5f5ef;
     border:none;
 }
-.features{
+.landing .features{
     border-radius:1rem;
 }
-.pictures{
+.landing .pictures{
   align-self: center;
   border: 1rem solid transparent;
 }
-.carousel-outer{
+.landing .carousel-outer{
   padding:20px;
 }
-.container{
+.landing .container{
   box-shadow:none!important;
   height:auto!important;
 }

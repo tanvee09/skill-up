@@ -1,0 +1,25 @@
+.card-body2{
+    color:white;
+    padding:2rem;
+    letter-spacing: 3px;
+    font-size: large;
+    display: flex;
+    flex-direction:column;
+}
+.card-body{
+    background-color: transparent;
+}
+
+.flex-row{
+    justify-content: center;
+}
+
+.card{
+    background-image: url(../assets/login.jpg);
+    background-size:cover;
+}
+
+.btn-content{
+    display: flex;
+    justify-content: center;
+}

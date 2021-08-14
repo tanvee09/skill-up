@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const instructorSchema = new mongoose.Schema({
     _id : String,
-    user: {
+    uid: {
         type : String,
         ref : Users,
         unique: true

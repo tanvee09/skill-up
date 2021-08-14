@@ -13,6 +13,7 @@ import SignUp from './SignUp';
 import Profile from './profile/profilepage';
 import AddLecture from './courses/AddLecture';
 import Course from './courses/Course';
+import 'tachyons';
 import InstructorLanding from './InstructorLanding';
 import PrivateRoute from './PrivateRoute';
 import AddCourse from './AddCourse';

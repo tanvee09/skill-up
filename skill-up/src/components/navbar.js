@@ -27,11 +27,22 @@ export default function NavBar() {
             {!currentUser && <Nav.Link> <Link to="/login"> <span className="navItem">Login</span> </Link> </Nav.Link>}
             {currentUser && <Nav.Link> <Link onClick={logout} to="/"> <span className="navItem">Logout</span> </Link> </Nav.Link>}
             
-            <Nav.Link>
+            {!currentUser &&
+            (<Nav.Link>
               <Link to="/signup">
                 <span className="navItem">Sign Up</span>
               </Link>
-            </Nav.Link>
+            </Nav.Link>)
+            }
+
+            {currentUser &&
+            (<Nav.Link>
+              <Link to="/profile">
+                <span className="navItem">Profile</span>
+              </Link>
+            </Nav.Link>)
+            }
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>

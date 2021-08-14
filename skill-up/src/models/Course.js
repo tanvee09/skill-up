@@ -1,4 +1,4 @@
-const { Instructor } = require('./Instructor.js');
+const { Users } = require('./User.js');
 const mongoose = require('mongoose');
 
 const lectureSchema = new mongoose.Schema({
@@ -20,16 +20,15 @@ const lectureSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-    _id : String,
     
     title: {
         type: String,
         required: true
     },
     
-    instructor: {
-        type :mongoose.Schema.Types.ObjectId,
-        ref: Instructor,
+    uid: {
+        type :mongoose.Schema.Types.String,
+        ref: Users,
         required: true
     },
     
@@ -43,8 +42,7 @@ const courseSchema = new mongoose.Schema({
     },
 
     numEnrolled: {
-        type : Number,
-        defaultValue: 0
+        type : Number
     } 
     
 });

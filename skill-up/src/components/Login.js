@@ -29,7 +29,7 @@ export default function Login() {
         history.push('/discuss');
       }
       else if (role==="instructor"){
-        history.push('/courses');
+        history.push('/instructorLanding');
       }
     } catch {
       setError("Failed to Sign In");

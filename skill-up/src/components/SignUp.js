@@ -42,7 +42,7 @@ export default function SignUp() {
       {
         console.log(2,emailRef.current.value);
         const response=await axios.post("/user", {
-          _id: x.user.uid,
+          uid: x.user.uid,
           name: nameRef.current.value,
           phoneNo: phoneRef.current.value,
           email: emailRef.current.value,
@@ -56,7 +56,7 @@ export default function SignUp() {
       }
       else{
         const response = await axios.post("/user", {
-          _id: x.user.uid,
+          uid: x.user.uid,
           name: nameRef.current.value,
           phoneNo: phoneRef.current.value,
           email: emailRef.current.value,
@@ -65,7 +65,7 @@ export default function SignUp() {
           instructor: true
         });
         console.log(response);
-        history.push("/");
+        history.push("/instructorLanding");
       }
       console.log("SignUp");
     } catch {

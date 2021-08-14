@@ -3,19 +3,22 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require('cors');
 const userRoute = require("./src/routes/user");
+const addCourseRoute = require("./src/routes/addcourse");
 const courseRoute = require("./src/routes/course");
 const discussRoute = require("./src/routes/discuss");
 require("dotenv").config();
 
 const app = express();
-const uri = url = 'mongodb://localhost:27017/' + "skillUp";
-//const uri = process.env.MONGO_URI;
+// const uri =  'mongodb://localhost:27017/' + "skillUp";
+// const url = uri;
+const uri = process.env.MONGO_URI;
 const port = 8080;
 
 app.use(morgan("tiny"));
 app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({limit: '100mb', extended: true}));
 app.use(userRoute)
+app.use(addCourseRoute)
 app.use(courseRoute)
 app.use(discussRoute)
 app.use(cors());

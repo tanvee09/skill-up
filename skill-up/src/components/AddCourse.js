@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Form, Button,Alert} from "react-bootstrap";
-import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
+import { useHistory } from "react-router";
+import axios from "axios";
+
 
 const AddCourse = () => {
     const titleRef = useRef();
@@ -9,6 +11,7 @@ const AddCourse = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const { currentUser } = useAuth();
+    const history = useHistory();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -16,12 +19,20 @@ const AddCourse = () => {
             setError("");
             setLoading(true);
             console.log("Current",currentUser);
-            // const response=await axios.post('/role',{
-            //     _id:_id
-            //   });
+            console.log(titleRef);
+            const response = await axios.post('/addcourse',{
+              title:titleRef.current.value,
+              uid:currentUser.uid,
+              introduction:introductionRef.current.value,
+              Lectures:[],
+              numEnrolled:0
+            });
+
+            console.log(response);
+            history.push('/instructorLanding');
         } 
         catch {
-            setError("Failed to Sign In");
+            setError("Failed to add course");
         }
         setLoading(false);
     }
@@ -39,7 +50,7 @@ const AddCourse = () => {
                     <Form.Control type="string" ref={introductionRef} required></Form.Control>
                   </Form.Group>
                   <Button disabled={loading} className="w-100" type="submit">
-                    Login
+                    Add Course
                   </Button>
                 </Form>
         </div>

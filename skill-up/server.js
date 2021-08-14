@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const userRoute = require("./src/routes/user");
 const courseRoute = require("./src/routes/course");
+const discussRoute = require("./src/routes/discuss");
 require("dotenv").config();
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json({limit: '100mb'}));
 app.use(express.urlencoded({limit: '100mb', extended: true}));
 app.use(userRoute)
 app.use(courseRoute)
+app.use(discussRoute)
 app.use(cors());
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });

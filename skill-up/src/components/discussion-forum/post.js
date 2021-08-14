@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Row, Col, Card, Container,ListGroup, InputGroup, Form} from 'react-bootstrap';
 import './../../css/discussion-forum/discussion.css'
 import './../../css/discussion-forum/post.css'
 import profileimg from './../../assets/profile.png'
+import axios from 'axios';
 
-export default function DiscussPost() {   
+export default function DiscussPost() {  
+  const [commentText, setCommentText] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    let data = {
+      comment: commentText
+    };
+    axios.post('http://localhost:3000/add/comment', data)
+            .then(response => console.log(response))
+            .catch(err => console.log('error --> ', err));
+  }
+  
   return (
     <>
     <div className="discuss post">
@@ -23,9 +36,9 @@ export default function DiscussPost() {
 
       <hr/>
 
-      <Form className="mt-4">
+      <Form className="mt-4" onSubmit={handleSubmit}>
         <InputGroup>
-          <Form.Control as="textarea" placeholder="Create a comment" aria-label="Comment"/>
+          <Form.Control as="textarea" placeholder="Create a comment" aria-label="Comment" onInput = {e => setCommentText(e.target.value)}/>
           <InputGroup.Append><button className="btn discussion-btn" id="submitComment" type="submit"><i className="fa fa-send-o"></i></button></InputGroup.Append>
         </InputGroup>
       </Form>

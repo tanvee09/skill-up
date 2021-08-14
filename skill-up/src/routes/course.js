@@ -116,5 +116,11 @@ router.post("api/courses/:id", (req, res)=>{
 
 })
 
+router.post("/addLecture", (req, res) => {
+  console.log("here");
+  console.log(req.body);
+  // res.send("received");
+})
+
 module.exports = router;
 

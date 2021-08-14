@@ -28,10 +28,20 @@ const router = require("express").Router();
 
 router.get("/api/courses", async (req, res) => {
     try {
-        Course.find({} ,{'Lectures':0} , (courses,err)=>{
+        Course.find({} ,{'Lectures':0} , async (courses,err)=>{
           if(!err)
           {
             console.log("courses" , courses)
+            await courses.map(async (course) => {
+              inst_name = ''
+              await Instructor.findById(course.instructor , (userid , err)=>{
+                User.findById(userid , (user,err)=>{
+                   inst_name = user.name
+                })
+              })
+              course['inst_name'] = inst_name
+              return course
+            })
             res.send(courses);
           }  
           else
@@ -49,12 +59,12 @@ router.get("api/courses/:id", async (req, res) => {
         // userid = req.user.id
         isStudent = false
         isInstructor = false
-        Student.find({userid} , (user , err) => {
+        await Student.find({userid} , (user , err) => {
           if (courseid in user.enrolled)
             isStudent = true
         })
 
-        Instructor.find({userid} , (user , err) => {
+        await Instructor.find({userid} , (user , err) => {
           if (user.id == Course.findbyId(courseid).instructor )
             isInstructor =  true
         })
@@ -63,12 +73,14 @@ router.get("api/courses/:id", async (req, res) => {
         {
           inst_name = '' 
           inst_img = ''
-          Course.findbyId(courseid , (course, err)=>{
+          course = {}
+          await Course.findbyId(courseid , (result, err)=>{
+            course = result
             Users.findById(course.instructor , (user,err) => {
               inst_name = user.name
             })
           })
-          res.send( {access : false, course : Course.findbyId(req.params.id), isInstructor , instructor :{name:inst_name} });
+          res.send( {access : false, course : course, isInstructor , instructor :{name:inst_name} });
         }  
         else
           res.send ({access : false})

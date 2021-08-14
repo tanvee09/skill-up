@@ -16,7 +16,7 @@ class CourseList extends React.Component{
         this.setState({searchField:event.target.value.toLowerCase()})
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         console.log("from component did mount");
         await fetch('/api/courses')
         .then(response => {
@@ -33,8 +33,8 @@ class CourseList extends React.Component{
             )
         })
 
-        const arr = filtered.map( ({title,instructor,intro}) =>{ 
-                return(<CoursePreview title={title} instructor={instructor} intro={intro} />)
+        const arr = filtered.map( (course) =>{ 
+                return(<CoursePreview title={course.title} instructor={course.instructor} intro={course.introduction} />)
         });
 
         console.log(filtered , arr, courses , "render")

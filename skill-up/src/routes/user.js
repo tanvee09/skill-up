@@ -8,7 +8,7 @@ router.post("/user", async (req, res) => {
     await user.save();
     res.send(user);
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 });
 

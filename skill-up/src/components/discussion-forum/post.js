@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Container,ListGroup, Form} from 'react-bootstrap';
+import {Row, Col, Card, Container,ListGroup, InputGroup, Form} from 'react-bootstrap';
 import './../../css/discussion-forum/discussion.css'
 import './../../css/discussion-forum/post.css'
 import profileimg from './../../assets/profile.png'
@@ -24,8 +24,10 @@ export default function DiscussPost() {
       <hr/>
 
       <Form className="mt-4">
-        <Form.Control className="mr-sm-2" as="textarea" placeholder="Create a comment" aria-label="Comment"/>
-        <button className="btn discussion-btn mt-2" id="submitComment" type="submit">Post comment</button>
+        <InputGroup>
+          <Form.Control as="textarea" placeholder="Create a comment" aria-label="Comment"/>
+          <InputGroup.Append><button className="btn discussion-btn" id="submitComment" type="submit"><i className="fa fa-send-o"></i></button></InputGroup.Append>
+        </InputGroup>
       </Form>
 
 

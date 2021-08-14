@@ -1,8 +1,14 @@
-import React from 'react'
 import "./navbar.css"
+import { useAuth } from '../contexts/AuthContext'
 import {Link} from 'react-router-dom'
 import {Navbar,Nav} from 'react-bootstrap'
+
+
 export default function NavBar() {
+  const { logout } = useAuth();
+  const { currentUser } = useAuth();
+
+
   return (
     <>
     <div className="navbartop">
@@ -18,11 +24,9 @@ export default function NavBar() {
         />
         <Navbar.Collapse id="basic-navbar-nav" >
           <Nav className="ml-auto">
-            <Nav.Link>
-              <Link to="/login">
-                <span className="navItem">Login</span>
-              </Link>
-            </Nav.Link>
+            {!currentUser && <Nav.Link> <Link to="/login"> <span className="navItem">Login</span> </Link> </Nav.Link>}
+            {currentUser && <Nav.Link> <Link onClick={logout} to="/"> <span className="navItem">Logout</span> </Link> </Nav.Link>}
+            
             <Nav.Link>
               <Link to="/signup">
                 <span className="navItem">Sign Up</span>

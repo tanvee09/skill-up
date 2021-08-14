@@ -21,9 +21,10 @@ function App() {
   const courses = {};
   return (
     <Router>
-      <Navbar />
+      
       <div className='app'>
         <AuthProvider>
+        <Navbar />
           <Switch>
             <Route exact path = '/discuss' component={Discussion} />
             <Route exact path = '/discuss/:id' component={DiscussPost} />

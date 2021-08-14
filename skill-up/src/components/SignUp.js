@@ -40,7 +40,7 @@ export default function SignUp() {
       if(student)
       {
         console.log(2,emailRef.current.value);
-        const response=await axios.post("/user", {
+        const response=await axios.post("http://localhost:8080/user", {
           _id: x.user.uid,
           name: nameRef.current.value,
           phoneNo: phoneRef.current.value,

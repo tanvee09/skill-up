@@ -39,6 +39,7 @@ export default function Login() {
 
   return (
     <>
+    <div className="login-signup">
     <div className="rounded">
     <div className="basic">
       <div id="wrapper"style={{borderRadius:"10px"}}>
@@ -81,7 +82,7 @@ export default function Login() {
       </div>
     </div>
     </div>
-    {/* <Footer /> */}
+    </div>
     </>
   );
 }

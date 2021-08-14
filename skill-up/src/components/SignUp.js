@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import axios from 'axios'
-import './signup.css'
+import './Login.css'
 export default function SignUp() {
   const emailRef = useRef();
   const nameRef = useRef();
@@ -67,8 +67,10 @@ export default function SignUp() {
 
   return (
     <>
-      <Card >
-      <div className="card-body2">
+    <div className="login-signup">
+      
+      <Card className="basic">
+      <div className="card-body2 container">
         <Card.Body className="w-100" style={{background:"transparent",marginRight:"80%"}}>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit} >
@@ -148,7 +150,7 @@ export default function SignUp() {
             </div>
 
             <div className="btn-content">
-            <Button disabled={loading} className="w-100" type="submit"style={{fontSize:"20px"}}>
+            <Button disabled={loading}  type="submit"style={{fontSize:"20px"}}>
               Sign Up
             </Button>
             </div>
@@ -162,6 +164,7 @@ export default function SignUp() {
         </Card.Body>
       </div>
       </Card>
+    </div>
     </>
   );
 }

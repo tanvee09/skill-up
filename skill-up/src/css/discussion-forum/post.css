@@ -1,12 +1,12 @@
-#username {
+.post #username {
   margin: 1em 0;
 }
 
-#submitComment {
+.post #submitComment {
   width: 100%;
 }
 
-.date-time {
+.post .date-time {
   color: #9e9eb1;
   font-size: 14px;
 }

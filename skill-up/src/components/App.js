@@ -8,6 +8,7 @@ import './App.css';
 import Landing from "./landing";
 import CourseList from './courses/CourseList';
 import Login from './Login';
+import SignUp from './SignUp';
 import Profile from './profile/profilepage';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route exact path = '/profile' component={Profile} />
             <Route exact path="/" component={Landing}></Route>
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
             <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
           </Switch>
         </AuthProvider>

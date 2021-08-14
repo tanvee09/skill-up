@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
     address :{
         type: String,
     },
+    student : {
+        type : Boolean,
+        defaultValue : false
+    },
+    instructor : {
+        type : Boolean,
+        defaultValue : false
+    }
 });
 
 const Users = mongoose.model("Users" , userSchema)

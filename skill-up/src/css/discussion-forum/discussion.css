@@ -13,18 +13,21 @@
 
 .discuss .card-header {
   font-weight: bold;
+  background-color: #9fdff7;
 }
 
 .discuss #post-box {
   margin: 2rem auto;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
+  background-color: powderblue;
   border-radius: 5px;
   padding: 0.5em 1.5em;
 }
 
 .discuss  .discussion-btn {
-  background-color: #F7F7F7;
-  border: 1.5px #DFDFDF solid;
+  /* background-color: #F7F7F7; */
+  background-color: #80d4f3;
+  border: 1.5px #56A9C7 solid;
 }
 
 .discuss .card {
@@ -46,4 +49,16 @@
   font-size: 18px;
   font-weight: bold;
   margin: 1em 0;
+}
+
+.postAddBtn {
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  background-color: #80d4f3;
+  border: 1.5px #56A9C7 solid;
+}
+
+.postAddBtn:focus {
+  outline: none;
 }

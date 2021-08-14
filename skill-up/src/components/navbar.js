@@ -5,6 +5,7 @@ import {Navbar,Nav} from 'react-bootstrap'
 export default function NavBar() {
   return (
     <>
+    <div className="navbartop">
       <Navbar sticky="top" expand="lg" >
         <Navbar.Brand>
           <Link to="/" >
@@ -30,6 +31,7 @@ export default function NavBar() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      </div>
     </>
   );
 }

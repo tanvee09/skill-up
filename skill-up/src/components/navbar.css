@@ -1,4 +1,8 @@
-.nav{
+.navbartop{
     color:black;
-    background-color: #aec6cf;
+    background-color: #56a9c7;
+  }
+  .navbartop a{
+    text-decoration: none;
+    color:white;
   }

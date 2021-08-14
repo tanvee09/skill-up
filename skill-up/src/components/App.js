@@ -11,6 +11,7 @@ import CourseList from './courses/CourseList';
 import Login from './Login';
 import SignUp from './SignUp';
 import Profile from './profile/profilepage';
+import AddLecture from './courses/AddLecture';
 import Course from './courses/Course';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path = '/discuss' component={Discussion} />
             <Route exact path = '/discuss/:id' component={DiscussPost} />
             <Route exact path = '/profile' component={Profile} />
+            <Route exact path = '/lecture/add' component={AddLecture} />
             <Route exact path="/" component={Landing}></Route>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />

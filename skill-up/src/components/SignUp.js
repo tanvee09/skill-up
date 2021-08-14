@@ -36,28 +36,34 @@ export default function SignUp() {
       setError("");
       setLoading(true);
       const x = await signup(emailRef.current.value, passwordRef.current.value);
-      // console.log("UID", x.user.uid);
-      // if(student)
-      // {
-      //   const response=await axios.post("/studentLanding", {
-      //     uid: x.user.uid,
-      //     name: nameRef.current.value,
-      //     phoneNumber: phoneRef.current.value,
-      //     location: locationRef.current.value,
-      //   });
-      //   console.log(response);
-      //   await history.push("/studentLanding");
-      // }
-      // else{
-      //   const response = await axios.post("/instructor", {
-      //     uid: x.user.uid,
-      //     name: nameRef.current.value,
-      //     phoneNumber: phoneRef.current.value,
-      //     location: locationRef.current.value,
-      //   });
-      //   console.log(response);
-      //   history.push("/instructorLanding");
-      // }
+      console.log("UID", x.user.uid);
+      if(student)
+      {
+        const response=await axios.post("/user", {
+          _id: x.user.uid,
+          name: nameRef.current.value,
+          phoneNo: phoneRef.current.value,
+          email: emailRef.current.value,
+          address: locationRef.current.value,
+          student: true,
+          instructor: false
+        });
+        console.log(response);
+        await history.push("/landing");
+      }
+      else{
+        const response = await axios.post("/instructor", {
+          _id: x.user.uid,
+          name: nameRef.current.value,
+          phoneNo: phoneRef.current.value,
+          email: emailRef.current.value,
+          address: locationRef.current.value,
+          student: false,
+          instructor: true
+        });
+        console.log(response);
+        history.push("/landing");
+      }
       console.log("SignUp");
     } catch {
       setError("Failed to create an account");

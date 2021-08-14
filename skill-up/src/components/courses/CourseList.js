@@ -3,17 +3,37 @@ import CoursePreview from './CoursePreview';
 import {Container, Form , Navbar, Nav} from 'react-bootstrap';
 
 
-const CourseList = ({courses}) => {
-    const arr = courses.map( ({title,instructor,intro}) =>
-        { 
-            return(
-                <CoursePreview title={title} instructor={instructor} intro={intro} />
-            )
+class CourseList extends React.Component{
+    constructor (props) {
+        super(props)
+        this.state = {
+            courses : [],
+            searchField : ''
         }
-    );
+    }
 
-    return(
-        <div>
+    searchChange=  (event)=>{
+        this.setState({searchField:event.target.value.toLowerCase()})
+    }
+
+    componentDidMount(){
+        fetch('/api/courses')
+        .then(response => response.json()).then(courses => this.setState({courses : courses}))
+    }
+
+    render() {
+        const {courses ,searchField} = this.state
+        const filtered = courses.filter((course) => {
+            return (
+                course.name.toLowerCase().includes(searchField) || course.instructor.toLowerCase.includes(searchField)
+            )
+        })
+
+        const arr = filtered.map( ({title,instructor,intro}) =>{ 
+                return(<CoursePreview title={title} instructor={instructor} intro={intro} />)
+        });
+
+        return (<div>
             <Container id="post-box">
                 <Navbar id="discussion-heading" className="justify-content-between">
                     <h1 class="navbar-brand"><strong>Courses</strong></h1>
@@ -24,10 +44,9 @@ const CourseList = ({courses}) => {
                     </Form>
                     </Nav>
                 </Navbar>
-                        {arr}
+                {arr}
             </Container>
-        </div>
-    )
+        </div>)
+    }
 }
-
 export default CourseList;

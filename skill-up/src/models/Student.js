@@ -6,7 +6,7 @@ import { Course } from 'Course.js'
 const studentSchema = new mongoose.Schema({
     _id : String,
     
-    user: {
+    userid: {
         type : mongoose.Schema.Types.String,
         ref = User,
         unique : true

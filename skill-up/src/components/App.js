@@ -11,28 +11,9 @@ import CourseList from './courses/CourseList';
 import Login from './Login';
 import SignUp from './SignUp';
 import Profile from './profile/profilepage';
+import Course from './courses/Course';
 
 function App() {
-  const courses = [{
-    title : "Course 1",
-    instructor: "I1",
-    intro:"welcome"
-  },
-  {
-    title : "Course 1",
-    instructor: "I1",
-    intro:"welcome"
-  },
-  {
-    title : "Course 1",
-    instructor: "I1",
-    intro:"welcome"
-  },
-  {
-    title : "Course 1",
-    instructor: "I1",
-    intro:"welcome"
-  }]
   return (
     <Router>
       <Navbar />
@@ -40,12 +21,13 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route exact path = '/discuss' component={Discussion} />
-            <Route exact path = '/discuss/123' component={DiscussPost} />
+            <Route exact path = '/discuss/:id' component={DiscussPost} />
             <Route exact path = '/profile' component={Profile} />
             <Route exact path="/" component={Landing}></Route>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
+            <Route exact path = '/courses' render={CourseList} />
+            <Route exact path = '/courses/:id' render={Course} />
           </Switch>
         </AuthProvider>
         <Footer />

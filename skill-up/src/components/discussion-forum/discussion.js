@@ -30,7 +30,7 @@ export default function Discussion() {
         <Card.Body>
           <Card.Title>Special title treatment</Card.Title>
           <Card.Text>With supporting text below as a natural lead-in to additional content.</Card.Text>
-          <a href="javascript:void(0)" className="btn discussion-btn">Go to discussion</a>
+          {/* "<a href="javascript:void(0)" className="btn discussion-btn">Go to discussion</a>" */}
         </Card.Body>
       </Card>
 

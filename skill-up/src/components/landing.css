@@ -1,22 +1,20 @@
-.head
-{
- position: absolute;
-  top: 70%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color:rgb(192, 69, 20);
-  font-size: 50px;
-}
 .top{
     display:flex;
     height: 70vh;
     flex-direction: column;
     align-items: center;
-    background-image:url("../assets/books.jpg");
+    background-image:linear-gradient(rgba(256,256, 256, 0.6), rgba(256, 256, 256, 0.6)),url("../assets/books.jpg");
     background-position: top;
     background-size: cover;
     position: relative;
+}
+.head
+{
+ position: absolute;
+  top: 20%;
+  text-align: center;
+  color:rgb(192, 69, 20);
+  font-size: 50px;
 }
 .heading-primary {
     color: rgb(14, 41, 44);
@@ -40,11 +38,13 @@
   }
   .jumbo{
       display:flex;
+      flex-direction:row;
       justify-content: center;
-      background:red;
+      background:#f5f5ef;
   }
   .div2 .jumbotron{
     margin-bottom:0;
+    padding:80px;
     border:none;
     background:#f5f5ef;
   }
@@ -57,8 +57,9 @@
       padding-left: 1rem;
   }
   .brown{
-      height:20rem;
-      width:auto;
+    min-width:300px;
+      background-image:url("../assets/books.jpg");
+      background-size: cover;
   }
   .cards .card-header{
       background:#f5f5ef;
@@ -77,15 +78,11 @@
 .features{
     border-radius:1rem;
 }
-.spores{
-    padding: 5% 0;
-    background-color:#f5f5ef ;
-    font-size:x-large;
-}
 .pictures{
   align-self: center;
   border: 1rem solid transparent;
 }
 .carousel-outer{
-  background-color:#f5f5ef ;
+  padding:20px;
+  align-items:center;
 }

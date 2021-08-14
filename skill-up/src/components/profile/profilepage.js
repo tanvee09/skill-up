@@ -7,7 +7,7 @@ function myDetailsPage() {
   return <Container className="my-3" id="detailsContainer">
     <Row>
       <Col className='text-center'>
-        <img src={profileImage} className="profileImg" />
+        <img src={profileImage} alt="" className="profileImg" />
         <p className="fullname">Tanvee Balhara</p>
       </Col>
     </Row>
@@ -45,7 +45,7 @@ function editProfile() {
     </Form>
     <Row>
       <Col className='text-center'>
-        <img src={profileImage} className="profileImg" />
+        <img src={profileImage} alt="" className="profileImg" />
         <p className="fullname">Tanvee Balhara</p>
       </Col>
     </Row>

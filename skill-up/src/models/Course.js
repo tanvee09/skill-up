@@ -20,17 +20,14 @@ const lectureSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-    _id : {
-        type :String,
-    },
     
     title: {
         type: String,
         required: true
     },
     
-    instructor: {
-        type :String,
+    uid: {
+        type :mongoose.Schema.Types.String,
         ref: Users,
         required: true
     },
@@ -45,8 +42,7 @@ const courseSchema = new mongoose.Schema({
     },
 
     numEnrolled: {
-        type : Number,
-        defaultValue: 0
+        type : Number
     } 
     
 });

@@ -8,14 +8,6 @@
     background-size: cover;
     /* position: relative; */
 }
-.landing .head
-{
- position: absolute;
-  top: 20%;
-  text-align: center;
-  color:rgb(192, 69, 20);
-  font-size: 50px;
-}
 .landing .heading-primary {
     color: rgb(14, 41, 44);
     text-transform: uppercase;
@@ -90,9 +82,13 @@
 }
 .landing .carousel-outer{
   padding:20px;
-  background-color: #ffb347;
+  display: flex;
+  justify-content: space-around;
 }
 .landing .container{
   box-shadow:none!important;
   height:auto!important;
+}
+.carousel_container{
+  flex:0.5;
 }

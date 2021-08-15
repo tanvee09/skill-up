@@ -18,7 +18,7 @@
     instructor: "I1",
     intro:"welcome"
   }]*/
-const date = require('date-and-time');
+// const date = require('date-and-time');
 const { Course } = require("../models/Course");
 const { Student } = require("../models/Student");
 const { Instructor } = require("../models/Instructor");

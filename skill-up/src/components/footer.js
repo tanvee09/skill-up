@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from '../assets/logo-full.png'
 import './footer.css';
 
 export default function Footer() {
@@ -6,7 +7,7 @@ export default function Footer() {
   return (
     <div className="footer">
             <div className="footer__logo-box">
-                <img src="" alt="Full logo" className="footer__logo logo mr-3" />
+                <img src={Logo} alt="Full logo" className="footer__logo logo mr-3" />
             </div>
             <div className="footer-bottom">
                 <div className="col-1-of-3">

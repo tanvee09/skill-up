@@ -8,6 +8,7 @@ const courseRoute = require("./src/routes/course");
 const discussRoute = require("./src/routes/discuss");
 const getCourseRoute = require("./src/routes/getcourse");
 const enrollRoute = require("./src/routes/enroll");
+const getEnrolledRoute = require("./src/routes/getenrolled");
 require("dotenv").config();
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(courseRoute)
 app.use(discussRoute)
 app.use(getCourseRoute)
 app.use(enrollRoute)
+app.use(getEnrolledRoute)
 app.use(cors());
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });

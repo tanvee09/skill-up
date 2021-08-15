@@ -17,19 +17,26 @@ export default function Course(props){
     
     let history = useHistory();
 
-    const enroll = (e)=>{
+    async function enroll (e){
       e.preventDefault();
-      console.log("posting")
-      let data = {
-        cid: props.match.params.id,
-        uid: currentUser.uid
+      try{
+        console.log("posting")
+        let data = {
+          cid: props.match.params.id,
+          uid: currentUser.uid
+        }
+        const response = await axios.post('/enroll', data);
+        console.log(response);
+        history.push('/studentLanding');
       }
-      axios.post('/enroll', data)
-              .then((response) => {
-                console.log(response);
-                history.push('/courses/' + props.match.params.id)
-              })
-              .catch(err => console.log('error --> ', err));
+      catch (err){
+          console.log(err);
+      }
+              // .then((response) => {
+              //   console.log(response);
+              //   history.push('/courses/' + props.match.params.id)
+              // })
+              // .catch(err => console.log('error --> ', err));
     }
 
     const [ar, setar] = useState('')

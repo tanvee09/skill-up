@@ -36,7 +36,8 @@ const InstructorLanding = () => {
                 setCourses(JSON.parse(JSON.stringify(response.data)));
                 console.log("Courses",courses);
             }
-        }    
+        }  
+        console.log(courses.length);  
     }
 
     return (
@@ -65,6 +66,11 @@ const InstructorLanding = () => {
                     
                     <div className="instructor-list-grid">
                         {/* for loop */}
+                        {!courses.length && (
+                            <div className="instructor-course">
+                                You have not created any course.
+                            </div>
+                        )}
                         {courses.map(course => (
                             <div className="instructor-course">
                                     <CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />

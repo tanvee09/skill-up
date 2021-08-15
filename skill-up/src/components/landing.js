@@ -35,21 +35,21 @@ export default function landing() {
       <Carousel>
         <Carousel.Item>
           <img
-            className="w-50"
+            className="w-100"
             src={carousel1}
             alt="learning"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="w-50"
+            className="w-100"
             src={carousel2}
             alt="Helping"
           />
           </Carousel.Item>
         <Carousel.Item>
           <img
-            className="w-50 "
+            className="w-100 "
             src={carousel3}
             alt="Lab Inspection"
           />

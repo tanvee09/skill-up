@@ -31,11 +31,10 @@ router.get("/api/courses", async (req, res) => {
         Course.find({} ,{'Lectures':0} , async (err ,courses)=>{
           if(!err)
           {
-            console.log("router")
             const req_courses = await courses.map(async (course) => {
               console.log("single" ,course)
               await Users.find({} , (err , user)=>{
-                console.log(typeof(user[0].id) , user[0].id , user[0]._id==course.uid)
+                console.log(typeof(user[0].uid) , user[0].uid , user[0].uid==course.uid)
               })
               await Users.findOne({uid:course.uid} , (err, user)=>{
                 console.log(err , user)
@@ -73,13 +72,14 @@ router.get("api/courses/:id", async (req, res) => {
 
         await Course.findById(courseid , async (err , course)=> {
           req_course = course
-          await User.findById(course.instructor , (err, user)=>{
+          await User.findById(course.uid , (err, user)=>{
             inst_name = user.name
           })
         })
 
         if (student || instructor)
         {
+          console.log(course)
           res.send( {access : true, course : req_course, isInstructor , instructor :{name:inst_name} });
         }  
         else
@@ -94,7 +94,7 @@ router.post("api/courses/:id", (req, res)=>{
     courseid = req.params.id
     try{
       //userid = req.user.id
-        Instructor.find({userid} , (user , err) => {
+        Users.find({userid} , (user , err) => {
         if (user.id == Course.findbyId(courseid).instructor )
           newLec ={
             topic: req.body.topic,

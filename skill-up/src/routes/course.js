@@ -35,9 +35,9 @@ router.get("/api/courses", async (req, res) => {
             const req_courses = await courses.map(async (course) => {
               console.log("single" ,course)
               await Users.find({} , (err , user)=>{
-                console.log(typeof(user[0].id) , user[0].id , user[0]._id==course.instructor)
+                console.log(typeof(user[0].id) , user[0].id , user[0]._id==course.uid)
               })
-              await Users.findOne({id:course.instructor} , (err, user)=>{
+              await Users.findOne({uid:course.uid} , (err, user)=>{
                 console.log(err , user)
                 if(!err && user!=null)
                   course["inst_name"] = user.name  

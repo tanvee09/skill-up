@@ -30,18 +30,18 @@ const AddCourse = () => {
         <div className="addCourse">
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-                  <Form.Group id="title">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="string" ref={titleRef} required></Form.Control>
-                  </Form.Group>
-                  <Form.Group id="introduction">
-                    <Form.Label>Introduction</Form.Label>
-                    <Form.Control type="string" ref={introductionRef} required></Form.Control>
-                  </Form.Group>
-                  <Button disabled={loading} className="w-100" type="submit">
-                    Login
-                  </Button>
-                </Form>
+                <Form.Group id="title">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control type="string" ref={titleRef} required></Form.Control>
+                </Form.Group>
+                <Form.Group id="introduction">
+                  <Form.Label>Introduction</Form.Label>
+                  <Form.Control type="string" ref={introductionRef} required></Form.Control>
+                </Form.Group>
+                <Button disabled={loading} className="w-100" type="submit">
+                  Login
+                </Button>
+            </Form>
         </div>
     )
 }

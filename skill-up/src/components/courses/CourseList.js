@@ -1,6 +1,7 @@
 import React from 'react';
 import CoursePreview from './CoursePreview';
 import {Container, Form , Navbar, Nav} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 class CourseList extends React.Component{
@@ -34,7 +35,11 @@ class CourseList extends React.Component{
         })
 
         const arr = filtered.map( (course) =>{ 
-                return(<CoursePreview title={course.title} instructor={course.instructor} intro={course.introduction} />)
+                return(
+                    <Link to={`/courses/${course.id}`}>
+                        <CoursePreview title={course.title} instructor={course.instructor} intro={course.introduction} enrolled={course.numEnrolled} />
+                    </Link>
+                )
         });
 
         console.log(filtered , arr, courses , "render")

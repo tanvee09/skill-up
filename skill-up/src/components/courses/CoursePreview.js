@@ -14,6 +14,7 @@ class CoursePreview extends React.Component{
               <Card.Body>
                 <Card.Text class="bold">{/* <img src={profileimg} alt='Profile' className="profile-image"/> */}Intructor : {this.props.instructor}</Card.Text>
                 <Card.Text>{this.props.intro}</Card.Text>
+                <div className="btn">{this.props.enrolled} Enrolled</div>
                 <a href="javascript:void(0)" className="btn discussion-btn">Go to course</a>
               </Card.Body>
             </Card>

@@ -1,22 +1,10 @@
 const { Course } = require("../models/Course")
 const router = require("express").Router();
 
-router.post("/addcourse", async (req, res) => {
-  try {
-      console.log(req.body);
-    let course = await new Course(req.body);
-    console.log(course);
-    await course.save();
-    res.send(course);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 router.post("/getcourse",async (req, res) => {
   try {
       console.log(req.body);
-    let courses = await Course.find({});
+    let courses = await Course.find({uid:req.body.uid});
     console.log(courses);
     res.send(courses);
   } catch (e) {

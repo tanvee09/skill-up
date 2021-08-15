@@ -1,0 +1,33 @@
+
+.instructor-landing {
+    margin: auto;
+    height: 70vh;
+    width: 85%;
+    justify-content: center;
+    display: flex;
+    
+}
+
+.instructor-landing .wrapper{
+    margin: auto;
+    justify-content: center;
+    flex: 1;
+    margin-top: 2rem;
+    width: 90%;
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.instructor-landing .instructor-head{
+    flex: 0.2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.instructor-landing .instructor-list{
+    flex: auto;
+    flex-direction: column;
+}

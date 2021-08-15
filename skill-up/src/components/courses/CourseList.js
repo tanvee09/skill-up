@@ -20,7 +20,6 @@ import './../../css/course/courseList.css';
      const [arr, setarr] = useState([]);
 
      useEffect(async () => {
-         const uid = currentUser.uid
          console.log("from component did mount");
          await fetch(`/courses`)
          .then(response => {

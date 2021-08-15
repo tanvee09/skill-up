@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const { User } = require('./User');
 const { DiscussPost} = require('./DiscussPost');
 
-const postSchema = new mongoose.Schema({
-    _id : String,
-    author : {
-        type : mongoose.Schema.Types.String,
-        ref = User,
+const commentSchema = new mongoose.Schema({
+    uid : {
+        type : String,
         required : true
+    },
+    author : {
+        type: String
     },
     date :{
         type : Date
@@ -17,11 +18,11 @@ const postSchema = new mongoose.Schema({
         required :true 
     },
     post : {
-        type : mongoose.Schema.Types.String,
+        type : String,
         ref : DiscussPost
     }
 });
 
-const DiscussPost = mongoose.model("DiscussPost" , postSchema)
+const Comment = mongoose.model("Comment" , commentSchema)
 
-module.exports = {DiscussPost}
+module.exports = {Comment}

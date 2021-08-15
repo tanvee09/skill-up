@@ -1,7 +1,8 @@
 const router = require("express").Router();
 let {DiscussPost} = require('../models/DiscussPost');
-let {Course} = require('../models/Course');
 let {Users} = require('../models/User');
+let {Comment} = require('../models/Comment');
+const { PromiseProvider } = require("mongoose");
 
 router.post('/course/:id/add/post', async (req, res) => {
   console.log(req.body);
@@ -25,9 +26,25 @@ router.post('/course/:id/add/post', async (req, res) => {
   }
 });
 
-router.post('/add/comment', (req, res) => {
+router.post('/add/comment', async (req, res) => {
   console.log(req.body);
-  res.send("received comment");
+  let {cid, comment, uid, pid} = req.body;
+  try {
+    let user = await Users.findOne({uid:uid});
+    const newcommentobj = {
+      author: user.name,
+      uid: uid,
+      date: new Date(),
+      content: comment,
+      post: pid
+    }
+    let newcomment = await new Comment(newcommentobj);
+    await newcomment.save()
+    res.send(newcomment);
+  } catch(err) {
+    console.log(err);
+    res.status(400).send("error");
+  }
 });
 
 router.post('/course/:id/getposts', async (req, res) => {
@@ -42,6 +59,32 @@ router.post('/course/:id/getposts', async (req, res) => {
   }
 })
 
-module.exports = router;
+router.post('/getcomments', async (req, res) => {
+  let pid = req.body.pid;
+  try {
+    let posts = await Comment.find({post: pid});
+    console.log(posts);
+    res.send(posts);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("error");
+  }
+})
 
-//6117f7c91a31655f781d0a61
+router.post('/getpost', async (req, res) => {
+  let pid = req.body.pid;
+  let uid = req.body.uid;
+  try {
+    let posts = await DiscussPost.findById(pid);
+    console.log(posts);
+    let user = await Users.findOne({uid:uid})
+    res.send({post: posts, username: user.name});
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("error");
+  }
+})
+
+
+
+module.exports = router;

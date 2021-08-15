@@ -3,7 +3,6 @@ const { Users } = require('./User');
 const { Course } = require('./Course');
 
 const postSchema = new mongoose.Schema({
-    // _id : mongoose.Schema.Types.String,
     uid : {
         type : String,
         required : true

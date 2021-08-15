@@ -119,7 +119,20 @@ router.post("api/courses/:id", (req, res)=>{
 router.post("/addLecture", (req, res) => {
   console.log("here");
   console.log(req.body);
-  // res.send("received");
+
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const client = require('twilio')(accountSid, authToken);
+
+  let message = req.body.title + ": \n " + req.body.content;
+
+  client.messages
+        .create({body: message, from: '+19282564538', to: '+917982559047'})
+        .then(message => console.log(message))
+        .catch(error => console.log("Twilio error \n" + erorr));
+
+
+  res.send("received");
 })
 
 module.exports = router;

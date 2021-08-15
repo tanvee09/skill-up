@@ -8,19 +8,19 @@
   color: white;
   display: flex;
   justify-content: center;
-  padding-top:0;
+  padding:0;
+  margin:1rem;
+  border:none;
 }
-/* body{
-    background-color:rgb(95, 81, 63);
-} */
+
 .login-signup #wrapper {
-  margin-top: 2rem;
+  margin: 2rem;
   width: 90%;
   max-width: 80rem;
 }
 
 .login-signup .row{
-  background-image: url("../assets/login.jpg");
+  background-image: linear-gradient(rgb(0,0,0,0.5), rgb(0,0,0,0.5)),url("../assets/login.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -74,7 +74,7 @@
 }
 
 .login-signup .card-body2{
-  background-image: url(../assets/login.jpg);
+  background-image: linear-gradient(rgb(0,0,0,0.6) , rgb(0,0,0,0.6)), url(../assets/books.jpg);
   background-size:cover;
   color:white;
   padding:2rem;

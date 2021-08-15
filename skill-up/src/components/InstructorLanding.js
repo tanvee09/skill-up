@@ -73,7 +73,7 @@ const InstructorLanding = () => {
                         )}
                         {courses.map(course => (
                             <div className="instructor-course">
-                                    <CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />
+                                    <CoursePreview uid={course._id} title={course.title} instructor={course.uid} intro={course.introduction} enrolled={course.numEnrolled} iid={course.uid} />
                             </div>
                         ))}
                     </div>

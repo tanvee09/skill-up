@@ -21,32 +21,7 @@ export default function DiscussPost() {
 
   function myDetailsPage() {
 
-    return <Container className="my-3" id="detailsContainer">
-      <Row>
-        <Col className='text-center'>
-          <img src={profileImage} alt="" className="profileImg" />
-          <p className="fullname">{Name}</p>
-        </Col>
-      </Row>
-  
-      <Row>
-        <Col xs="auto"><p className="title">Email</p></Col>
-        <Col><p className="sep"></p></Col>
-      </Row>
-      <p className="value">{Email}</p>
-  
-      <Row>
-        <Col xs="auto"><p className="title">Phone Number</p></Col>
-        <Col><p className="sep"></p></Col>
-      </Row>
-      <p className="value">{Phone}</p>
-  
-      <Row>
-        <Col xs="auto"><p className="title">Address</p></Col>
-        <Col><p className="sep"></p></Col>
-      </Row>
-      <p className="value">{Location}</p>
-    </Container>
+    return ;
   }
 
   if (currentUser) {
@@ -65,20 +40,25 @@ export default function DiscussPost() {
   }
 
   return (
-    <>
-      <Container id="profileContainer" className="my-5">
-        <Tabs defaultActiveKey="details" id="uncontrolled-tab" className="mb-3">
-          <Tab eventKey="details" title="My Details">
-            {myDetailsPage()}
-          </Tab>
-          
-          <Tab eventKey="editProfile" title="Edit Profile">
-            <div>
-              {editProfile()}
-            </div>
-          </Tab>
-        </Tabs>
-      </Container>
-    </>
+    <Container className="align-items-center abc" >
+    <Container className="my-3" id="detailsContainer">
+      <Row className="align-items-center">
+        <Col xs="6" className="text-center align-items-center">
+          <img src={profileImage} alt="" className="profileImg" />
+          <p className="fullname">{Name}</p>
+        </Col>
+        <Col>
+          <p className="title">Email</p>
+          <p>{Email}</p>
+      
+          <p className="title">Phone Number</p>
+          <p>{Phone}</p>
+      
+          <p className="title">Address</p>
+          <p>{Location}</p>
+        </Col>
+      </Row>
+    </Container>
+    </Container>
   );
 };

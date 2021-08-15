@@ -21,14 +21,14 @@
 
 #detailsContainer {
   background-color: #e9e4e4;
-  padding: 2em 15%;
+  padding: 2em;
   border-radius: 4px;
+  /* min-height: 30em; */
 }
 
 .fullname {
   font-size: 26px;
   margin-top: 10px;
-  margin-bottom: 2em;
   font-weight: bold;
   font-family: 'Balsamiq Sans', cursive;
   text-decoration: underline;
@@ -51,4 +51,8 @@
   margin-bottom: 5px;
   width: 100%;
   border-bottom: 1px solid #5F513F;
+}
+
+.abc {
+  min-height: 38em;
 }

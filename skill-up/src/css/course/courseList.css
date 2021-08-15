@@ -1,0 +1,7 @@
+.courseList .card {
+  min-width: 20em;
+}
+
+.courseList {
+  min-height: 40rem;
+}

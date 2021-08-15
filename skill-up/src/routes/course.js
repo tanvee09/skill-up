@@ -28,35 +28,47 @@ const router = require("express").Router();
 
 
 
-
 router.get("/api/courses/:id/:uid", async (req, res) => {
     courseid = req.params.id
     console.log(courseid)
     userid = req.params.uid
     try {
-        isStudent = true
+        enrolled = true
         isInstructor = false
         inst_name = ''
         req_course = {}
 
-        await Student.find({uid :userid, cid : courseid} , (err ,user) => {
-          if (user == null || err)
-            isStudent = false
-        })
+        let stud = await Student.findOne({uid :userid, cid : courseid})
+        console.log(stud)
+        if (stud) {
+          enrolled = true
+        } else {
+          enrolled = false
+        }
+
+        // await Student.find({uid :userid, cid : courseid} , (err ,user) => {
+        //   if (user == null || err)
+        //     enrolled = false
+        // })
 
         let course = await Course.findById(courseid)
-          req_course = JSON.parse(JSON.stringify(course))
-          let user = await Users.findOne({uid : course.uid});
-          req_course["inst_name"] = user.name
-          // await Users.findById(course.uid , (err, user)=>{
-          //   inst_name = user.name
-          // })
-        if(!isStudent && !isInstructor)
+        req_course = JSON.parse(JSON.stringify(course))
+        let user = await Users.findOne({uid : course.uid});
+        req_course["inst_name"] = user.name
+        // await Users.findById(course.uid , (err, user)=>{
+        //   inst_name = user.name
+        // })
+        if (course.uid == userid) {
+          isInstructor=true;
+        }
+
+        
+        if(!enrolled && !isInstructor)
         {
           req_course["Lectures"] = [];
         }  
         console.log("Sent", req_course)
-        res.send( {course : req_course, isInstructor});
+        res.send( {course : req_course, isInstructor, enrolled});
 
 
     } catch (e) {
@@ -119,11 +131,10 @@ router.post("/addLecture", async (req, res) => {
   
   try{
     newLec ={
-      topic: req.body.title,
+      title: req.body.title,
       content: req.body.content,
-      date : date.format(new Date(), 'ddd, MMM DD YYYY')
+      date : new Date()
     }
-    console.log((await Course.findOne({}))._id)
     await Course.updateOne({ _id: cid }, {
       $push: {Lectures : newLec}
     })
@@ -140,16 +151,23 @@ router.post("/addLecture", async (req, res) => {
       // sendTwilioSMS(`(Course: ${coursetitle}) ${message}`, pno)
     })
 
-    sendTwilioSMS("\n" + `(Course: ${coursetitle})` + "\n" + `${message}`, '+917982559047')
+    // sendTwilioSMS("\n" + `(Course: ${coursetitle})` + "\n" + `${message}`, '+917982559047')
   } catch(e) {
     console.log(e)
   }
 
-  
-
-
   res.send("received");
 });
+
+function sendTwilioSMS(message, pno) {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const client = require('twilio')(accountSid, authToken);
+  client.messages
+        .create({body: message, from: '+19282564538', to: pno})
+        .then(message => console.log(message))
+        .catch(error => console.log("Twilio error \n" + erorr));
+}
 
 router.post('/checkifinstructor', async (req, res) => {
   let {cid, uid} = req.body;
@@ -173,16 +191,6 @@ router.post('/checkifenrolled', async (req, res) => {
     res.send(false);
   }
 })
-
-function sendTwilioSMS(message, pno) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const client = require('twilio')(accountSid, authToken);
-  client.messages
-        .create({body: message, from: '+19282564538', to: pno})
-        .then(message => console.log(message))
-        .catch(error => console.log("Twilio error \n" + erorr));
-}
 
 module.exports = router;
 

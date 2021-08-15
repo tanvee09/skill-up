@@ -21,7 +21,7 @@ export default function NavBar(props) {
     axios.post('http://localhost:3000/user/get', {uid: uid})
     .then(response =>{
       if(response.data.student)
-        setLanding('/discuss');
+        setLanding('/studentLanding');
       else
         setLanding('/instructorLanding');
     })

@@ -26,11 +26,11 @@ import './../../css/course/courseList.css';
              console.log("resp", response);
              response.json().then(c => { 
                  setcourses(c);
-
                 const a = c.map( (course) =>{ 
+                    console.log(course, course._id)
                         return(
-                            <Link to={`/courses/${course._id}`} key={course._id}>
-                                <CoursePreview uid={course.id} title={limitText(course.title, 30)} instructor={limitText(course.inst_name, 15)} intro={limitText(course.introduction, 30)} enrolled={course.numEnrolled} iid={course.uid} />
+                            <Link to={`/courses/` + course._id} key={course._id}>
+                                <CoursePreview uid={course.id} title={limitText(course.title, 30)} instructor={limitText(course.inst_name, 15)} intro={limitText(course.introduction, 30)} enrolled={course.numEnrolled} cid={course._id} iid={course.uid} />
                             </Link>
                         )
                 });

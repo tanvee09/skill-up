@@ -15,9 +15,6 @@ router.post("/user", async (req, res) => {
 
 router.post("/role", async(req,res) =>{
   try{
-  //   Users.find({}).toArray(function(err, docs) {
-  //     console.log(JSON.stringify(docs));
-  // });
     const user = await Users.find({uid:req.body._id});
     console.log(req.body);
     console.log(user);

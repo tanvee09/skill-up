@@ -10,11 +10,7 @@ export default function NavBar(props) {
   const { logout } = useAuth();
   const { currentUser } = useAuth();
   const [landing,setLanding] = useState('');
-  
-  useEffect(()=> {
-    console.log(currentUser.uid)
-    props.setUid(currentUser.uid)
-  } , [currentUser]) 
+ 
 
   async function getLanding (){
     let uid = currentUser.uid;

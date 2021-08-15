@@ -10,8 +10,8 @@ const getCourseRoute = require("./src/routes/getcourse");
 require("dotenv").config();
 
 const app = express();
-const uri =  'mongodb://localhost:27017/' + "skillUp";
-//const uri = process.env.MONGO_URI;
+// const uri =  'mongodb://localhost:27017/' + "skillUp";
+const uri = process.env.MONGO_URI;
 const port = 8080;
 
 app.use(morgan("tiny"));

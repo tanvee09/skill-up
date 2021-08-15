@@ -14,7 +14,7 @@ class Course extends React.Component {
           isInstructor : '',
           introduction : '',
           Lectures : [],
-          instructor : {},
+          instructor : '',
       }
   }
 
@@ -22,15 +22,17 @@ class Course extends React.Component {
   {
     console.log(this.props)
     const { id } = this.props.match.params;
-    const uid = this.props.uid
+    // const uid = this.props.uid
+    let uid = 'jSyyKVoIpeYdAbh9UqgCwNTtHtn2'
     fetch(`/api/courses/${id}/${uid}`)
     .then(response => response.json())
     .then( response => {
+      console.log(response)
         this.setState({ 
           title: response.course.title, 
           introduction : response.course.introduction,
           Lectures : response.course.Lectures,
-          instructor : response.instructor,
+          instructor : response.course.inst_name,
           enrolled : response.course.numEnrolled,
           isInstructor : response.isInstructor
         })
@@ -40,7 +42,7 @@ class Course extends React.Component {
   render() {
     const {isInstructor , title, instructor, introduction, Lectures} = this.state;
     let arr = ""
-    if(Lectures.length > 0){
+    if(Lectures && Lectures.length > 0){
         arr = Lectures.map( (lecture) => {
         return (
           <ListGroup.Item>
@@ -71,21 +73,21 @@ class Course extends React.Component {
       <div className="discuss post">
         <Container id="post-box">
           <Card.Title id="username">
-            Course Name : {title}
+            Instructor : {instructor}
           </Card.Title>
           <Card>
             <Card.Header>
-              Instructor : {instructor.name}
+              {title}
             </Card.Header>
             <Card.Body>
-              Introduction
               <Card.Text>{introduction}</Card.Text>
             </Card.Body>
           </Card>
 
           <hr/>
           {form}
-          <ListGroup variant="flush" className="mt-5">
+          <p className="mt-5"><strong>Lectures</strong></p>
+          <ListGroup variant="flush" className="mt-2">
             {arr}
           </ListGroup>
         </Container>

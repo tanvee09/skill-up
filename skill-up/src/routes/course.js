@@ -29,7 +29,7 @@ const router = require("express").Router();
 
 
 
-router.get("/courses/:id/:uid", async (req, res) => {
+router.get("/api/courses/:id/:uid", async (req, res) => {
     courseid = req.params.id
     console.log(courseid)
     userid = req.params.uid
@@ -44,19 +44,19 @@ router.get("/courses/:id/:uid", async (req, res) => {
             isStudent = false
         })
 
-        await Course.findById(courseid , async (err , course)=> {
-          req_course = course
-          await User.findById(course.uid , (err, user)=>{
-            inst_name = user.name
-          })
-        })
-
-        if(!student && !instructor)
+        let course = await Course.findById(courseid)
+          req_course = JSON.parse(JSON.stringify(course))
+          let user = await Users.findOne({uid : course.uid});
+          req_course["inst_name"] = user.name
+          // await Users.findById(course.uid , (err, user)=>{
+          //   inst_name = user.name
+          // })
+        if(!isStudent && !isInstructor)
         {
-          req_courses["Lectures"] = [];
+          req_course["Lectures"] = [];
         }  
-        console.log(course)
-        res.send( {course : req_course, isInstructor , instructor :{name:inst_name} });
+        console.log("Sent", req_course)
+        res.send( {course : req_course, isInstructor});
 
 
     } catch (e) {

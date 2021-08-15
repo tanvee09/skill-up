@@ -5,10 +5,11 @@ import './../../css/discussion-forum/post.css'
 import profileimg from './../../assets/profile.png'
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
+import { useHistory } from "react-router-dom";
 
 export default function DiscussPost(props) {  
   const [commentText, setCommentText] = useState('');
-
+  let history = useHistory();
   const { currentUser } = useAuth();
   let uid = currentUser.uid;
   let courseId = props.match.params.cid;
@@ -38,9 +39,17 @@ export default function DiscussPost(props) {
               setAllDiscussPosts(allpostsd)
             })
             .catch(err => console.log('error --> ', err));
+    e.target.reset();
   }
 
   useEffect(() => {
+    let data = {cid: courseId, uid: uid};
+    axios.post('/checkifenrolled', data)
+    .then((res) => {
+      if (res.data == false) {
+        history.push('/courses/' + courseId)
+      }
+    })
     axios.post('/getcomments', {pid: postId})
         .then(res => {
           function compare(a, b) {

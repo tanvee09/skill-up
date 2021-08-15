@@ -1,18 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Card, Container, Nav, Form, Navbar} from 'react-bootstrap';
 import './../../css/discussion-forum/discussion.css';
 import './../../css/discussion-forum/post.css';
 import './../../css/course/addLecture.css';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
-
+import { useHistory } from "react-router-dom";
 export default function AddLecture(props) {  
   let cid = props.match.params.cid;
   const { currentUser } = useAuth();
   let uid = currentUser.uid;
-
+  let history = useHistory()
   const [LecTitle, setLecTitle] = useState('');
   const [LecContent, setLecContent] = useState('');
+
+  useEffect(() => {
+    let data = {cid: cid, uid: uid};
+    axios.post('/checkifinstructor', data)
+    .then((res) => {
+      if (res.data == false) {
+        history.push('/courses/' + cid)
+      }
+    })
+  }, [])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +34,9 @@ export default function AddLecture(props) {
     };
     console.log("posting")
     axios.post('/addLecture', data)
-            .then(response => console.log(response))
+            .then((response) => {
+              history.push("/courses/" + cid)
+            })
             .catch(err => console.log('error --> ', err));
   }
 

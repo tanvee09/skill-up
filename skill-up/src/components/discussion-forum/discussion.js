@@ -5,6 +5,7 @@ import profileimg from './../../assets/profile.png'
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 import {Link} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 export default function Discussion(props) { 
   const { currentUser } = useAuth();
@@ -13,6 +14,7 @@ export default function Discussion(props) {
   const [addPost, setAddPost] = useState('');
   var PostTitle = '';
   var PostContent = '';
+  let history = useHistory();
   const [allDiscussPosts, setAllDiscussPosts] = useState([]);
   const [gotPosts, setGotPosts] = useState();
   function handleSubmit(e) {
@@ -32,6 +34,7 @@ export default function Discussion(props) {
               setAllDiscussPosts(allpostsd)
             })
             .catch(err => console.log('error --> ', err));
+    e.target.reset()
   }
 
   function getAddPost() {
@@ -69,6 +72,13 @@ export default function Discussion(props) {
   }
 
   useEffect(() => {
+    let data = {cid: courseId, uid: uid};
+    axios.post('/checkifenrolled', data)
+    .then((res) => {
+      if (res.data == false) {
+        history.push('/courses/' + courseId)
+      }
+    })
     axios.post('getposts', {cid: courseId})
         .then(res => {
             function compare(a, b) {

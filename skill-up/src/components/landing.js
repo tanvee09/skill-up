@@ -1,6 +1,8 @@
 import React from 'react'
 import collage from '../assets/center.jpg'
-import laptop from '../assets/laptop.jpg'
+import review1 from '../assets/review1.png'
+import review2 from '../assets/review2.png'
+import review3 from '../assets/review3.png'
 import carousel1 from '../assets/carousel1.jpg'
 import carousel2 from '../assets/carousel2.jpg'
 import carousel3 from '../assets/carousel3.jpg'
@@ -66,26 +68,11 @@ export default function landing() {
             <div
               className="row"
             >
-              <div className=" pictures col-xl-4 col-md-6 col-12"><img className="features img-fluid" src={logo} alt="Lab Verification" /><br></br>
-              <div className="text-center">
-              mno
-              <br />
-              review
-            </div>
+              <div className=" pictures col-xl-4 col-md-6 col-12 "><img className="features img-fluid" src={review1} alt="Lab Verification" /><br></br>
               </div>
-              <div className=" pictures col-xl-4 col-md-6 col-12"><img className="features img-fluid" src={logo} alt="Stubble" /><br></br>
-              <div className="text-center">
-              abc
-              <br />
-              review 1
-            </div>
+              <div className=" pictures col-xl-4 col-md-6 col-12 "><img className="features img-fluid" src={review2} alt="Stubble" /><br></br>
               </div>
-              <div className="pictures col-xl-4 col-md-6 col-12"><img className="features img-fluid" src={logo} alt="Uncertain prices" /><br></br>
-              <div className="text-center">
-              xyz
-              <br />
-              review 2
-            </div>
+              <div className="pictures col-xl-4 col-md-6 col-12"><img className="features img-fluid" src={review3} alt="Uncertain prices" /><br></br>
               </div>
             </div>
           </Card.Body>

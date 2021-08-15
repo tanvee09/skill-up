@@ -58,6 +58,7 @@
       background-color:#f5f5ef;
       text-align: center;
       border:none;
+      padding:1.5rem;
   }
   .landing .card{
     border:none !important;
@@ -73,6 +74,9 @@
     flex-wrap: wrap;
     background:#f5f5ef;
     border:none;
+}
+.card2 .row{
+  margin:1rem;
 }
 .landing .features{
     border-radius:1rem;

@@ -11,22 +11,33 @@ const InstructorLanding = () => {
     const [courses,setCourses] = useState([]);
     
     async function viewCourses() {
-        const uid = currentUser.uid;
-        let response = await axios.post("/getcourse", {
-          uid: uid
-        });
-        console.log(response);
-        if(response.data==="")
+        const obj = document.getElementsByClassName('instructor-list')[0];
+        const style = window.getComputedStyle(obj);
+        const display = style.getPropertyValue('display');
+
+        if(display==='none')
+            obj.style.display = 'flex'
+        else
+            obj.style.display = 'none'
+
+        if(!courses.length)
         {
-          setCourses([]);
-        }
-        else{
-            console.log("Data",response.data);
-            setCourses(JSON.parse(JSON.stringify(response.data)));
-            console.log("Courses",courses);
-        }
-        
-      }
+            const uid = currentUser.uid;
+            let response = await axios.post("/getcourse", {
+            uid: uid
+            });
+            console.log(response);
+            if(response.data==="")
+            {
+            setCourses([]);
+            }
+            else{
+                console.log("Data",response.data);
+                setCourses(JSON.parse(JSON.stringify(response.data)));
+                console.log("Courses",courses);
+            }
+        }    
+    }
 
     return (
         <div className="instructor-landing">

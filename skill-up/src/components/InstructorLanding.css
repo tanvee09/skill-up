@@ -45,6 +45,7 @@
 .instructor-landing .instructor-list{
     flex: auto;
     flex-direction: column;
+    display: none;
 }
 .instructor-list-grid{
     display: flex;

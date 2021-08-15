@@ -2,12 +2,28 @@ import "./navbar.css"
 import { useAuth } from '../contexts/AuthContext'
 import {Link} from 'react-router-dom'
 import {Navbar,Nav} from 'react-bootstrap'
+import { useState } from "react"
+import axios from "axios"
 
 
 export default function NavBar() {
   const { logout } = useAuth();
   const { currentUser } = useAuth();
-
+  const [landing,setLanding] = useState('');
+  
+  async function getLanding (){
+    let uid = currentUser.uid;
+    axios.post('http://localhost:3000/user/get', {uid: uid})
+    .then(response =>{
+      if(response.data.student)
+        setLanding('/discuss');
+      else
+        setLanding('/instructorLanding');
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 
   return (
     <>
@@ -24,6 +40,13 @@ export default function NavBar() {
         />
         <Navbar.Collapse id="basic-navbar-nav" >
           <Nav className="ml-auto">
+            {currentUser &&
+              (<Nav.Link>
+                <Link onClick={getLanding} to={landing}>
+                  <span className="navItem">My Courses</span>
+                </Link>
+              </Nav.Link>)
+              }
             {!currentUser && <Nav.Link> <Link to="/login"> <span className="navItem">Login</span> </Link> </Nav.Link>}
             {currentUser && <Nav.Link> <Link onClick={logout} to="/"> <span className="navItem">Logout</span> </Link> </Nav.Link>}
             

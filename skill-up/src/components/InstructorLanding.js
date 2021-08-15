@@ -2,7 +2,6 @@ import {Link} from 'react-router-dom';
 
 const InstructorLanding = () => {
 
-
     return (
         <div className="instructor-landing">
             <div className="wrapper">

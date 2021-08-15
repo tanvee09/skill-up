@@ -2,7 +2,6 @@ const { Users } = require('./User.js');
 const mongoose = require('mongoose');
 
 const lectureSchema = new mongoose.Schema({
-    _id : String,
 
     title : {
         type : String,
@@ -20,7 +19,7 @@ const lectureSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-    
+
     title: {
         type: String,
         required: true

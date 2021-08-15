@@ -6,6 +6,7 @@ import './../../css/course/coursePreview.css'
 
 class CoursePreview extends React.Component{
     render(){
+        console.log(this.props.instructor)
         return(
             <Card class="mg3" className="tc dib grow ma2 pa3 bw1">
               <Card.Header>

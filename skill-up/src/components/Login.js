@@ -26,7 +26,7 @@ export default function Login() {
       const role=response.data.role
       if(role==="student")
       {
-        history.push('/discuss');
+        history.push('/studentLanding');
       }
       else if (role==="instructor"){
         history.push('/instructorLanding');

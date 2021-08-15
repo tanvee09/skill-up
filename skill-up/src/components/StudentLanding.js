@@ -6,13 +6,12 @@ import axios from 'axios';
 import './InstructorLanding.css';
 import CoursePreview from './courses/CoursePreview';
 
-const InstructorLanding = () => {
+const StudentLanding = () => {
     const {currentUser} = useAuth();
     const [courses,setCourses] = useState([]);
     
     async function viewCourses() {
         const uid = currentUser.uid;
-        // console.log(uid);
         let response = await axios.post("/getcourse", {
           uid: uid
         });
@@ -34,12 +33,12 @@ const InstructorLanding = () => {
             <div className="wrapper">
                 <div className="instructor-head">
                     <div className="instructor-profile">
-                        Welcome {currentUser.email}!
+                        Welcome {currentUser.email}!(Student)
                     </div>
                     <div className="instructor-add">
-                        <Link to="/addCourse">
+                        <Link to="/courses">
                             <Button>
-                                Add Course
+                                Find New Course
                             </Button>
                         </Link>
                     </div>
@@ -69,4 +68,4 @@ const InstructorLanding = () => {
     )
 }
 
-export default InstructorLanding
+export default StudentLanding

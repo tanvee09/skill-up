@@ -34,7 +34,7 @@ class CourseList extends React.Component{
         })
 
         const arr = filtered.map( (course) =>{ 
-                return(<CoursePreview title={course.title} instructor={course.instructor} intro={course.introduction} />)
+                return(<CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />)
         });
 
         console.log(filtered , arr, courses , "render")

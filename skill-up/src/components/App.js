@@ -15,6 +15,7 @@ import AddLecture from './courses/AddLecture';
 import Course from './courses/Course';
 import 'tachyons';
 import InstructorLanding from './InstructorLanding';
+import StudentLanding from './StudentLanding';
 import PrivateRoute from './PrivateRoute';
 import AddCourse from './AddCourse';
 
@@ -38,6 +39,7 @@ function App() {
             <Route exact path = '/courses/:id' component={Course} />
             <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
             <PrivateRoute path="/instructorLanding" component={InstructorLanding} />
+            <PrivateRoute path="/studentLanding" component={StudentLanding} />
             <PrivateRoute path="/addCourse" component={AddCourse} />
           </Switch>
         </AuthProvider>

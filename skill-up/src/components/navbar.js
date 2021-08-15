@@ -41,6 +41,11 @@ export default function NavBar(props) {
         />
         <Navbar.Collapse id="basic-navbar-nav" >
           <Nav className="ml-auto">
+              <Nav.Link>
+                <Link to='/courses'>
+                  <span className="navItem">All Courses</span>
+                </Link>
+              </Nav.Link>
             {currentUser &&
               (<Nav.Link>
                 <Link onClick={getLanding} to={landing}>

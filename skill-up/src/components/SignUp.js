@@ -52,7 +52,7 @@ export default function SignUp() {
         });
         console.log(response);
 
-        await history.push("/");
+        await history.push("/studentLanding");
       }
       else{
         const response = await axios.post("/user", {

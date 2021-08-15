@@ -23,7 +23,7 @@ const InstructorLanding = () => {
         if(!courses.length)
         {
             const uid = currentUser.uid;
-            let response = await axios.post("/getcourse", {
+            let response = await axios.post("/getinstrcourse", {
             uid: uid
             });
             console.log(response);
@@ -36,7 +36,8 @@ const InstructorLanding = () => {
                 setCourses(JSON.parse(JSON.stringify(response.data)));
                 console.log("Courses",courses);
             }
-        }    
+        }  
+        console.log(courses.length);  
     }
 
     return (
@@ -65,9 +66,16 @@ const InstructorLanding = () => {
                     
                     <div className="instructor-list-grid">
                         {/* for loop */}
+                        {!courses.length && (
+                            <div className="instructor-course">
+                                You have not created any course.
+                            </div>
+                        )}
                         {courses.map(course => (
                             <div className="instructor-course">
-                                    <CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />
+                                <Link to={`/courses/${course._id}`}>
+                                    <CoursePreview uid={course._id} title={course.title} instructor={course.uid} intro={course.introduction} enrolled={course.numEnrolled} iid={course.uid} />
+                                </Link>
                             </div>
                         ))}
                     </div>

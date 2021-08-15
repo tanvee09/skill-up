@@ -11,7 +11,7 @@ const studentSchema = new mongoose.Schema({
     },
     
     cid:{
-        type : String,
+        type : mongoose.Schema.Types.ObjectId,
         ref : Course
     }
 });

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Users } = require('./User');
+const { Course } = require('./Course');
 
 const postSchema = new mongoose.Schema({
     _id : String,
@@ -14,6 +15,10 @@ const postSchema = new mongoose.Schema({
     content :{
         type : String,
         required :true 
+    },
+    cid: {
+        type :String,
+        ref = Course
     }
 });
 

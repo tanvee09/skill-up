@@ -4,8 +4,7 @@ import './../../css/discussion-forum/discussion.css'
 import profileimg from './../../assets/profile.png'
 import axios from 'axios';
 
-export default function Discussion() {   
-
+export default function Discussion(props) {   
   const [addPost, setAddPost] = useState('');
   var PostTitle = '';
   var PostContent = '';

@@ -4,7 +4,7 @@ import './../../css/discussion-forum/discussion.css'
 import profileimg from './../../assets/profile.png'
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
-import { DiscussPost } from '../../models/DiscussPost';
+import {Link} from 'react-router-dom';
 
 export default function Discussion(props) { 
   const { currentUser } = useAuth();
@@ -51,15 +51,17 @@ export default function Discussion(props) {
 
   function createNewPost(post) {
     if (post) {
-      let {title, content, author, postid} = post;
-      return <Card>
+      let {title, content, author, cid} = post;
+      let pid = post._id;
+      let link = `discuss/${pid}`;
+      return <Card key={pid}>
         <Card.Header>
           <img src={profileimg} alt='Profile' className="profile-image"/> {author}
         </Card.Header>
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{content}</Card.Text>
-          <a href="javascript:void(0)" className="btn discussion-btn">Go to discussion</a>
+          <Link to={link} className="btn discussion-btn">Go to discussion</Link>
         </Card.Body>
       </Card>;
     }

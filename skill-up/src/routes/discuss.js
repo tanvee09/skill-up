@@ -3,9 +3,9 @@ let {DiscussPost} = require('../models/DiscussPost');
 let {Course} = require('../models/Course');
 let {Users} = require('../models/User');
 
-router.post('/add/post', async (req, res) => {
+router.post('/course/:id/add/post', async (req, res) => {
   console.log(req.body);
-  let {cid, title, content, uid} = req.body;
+  let {cid, title, content, uid, _id} = req.body;
   try {
     let user = await Users.findOne({uid:uid});
     const newpostobj = {
@@ -30,7 +30,7 @@ router.post('/add/comment', (req, res) => {
   res.send("received comment");
 });
 
-router.post('/getposts', async (req, res) => {
+router.post('/course/:id/getposts', async (req, res) => {
   let courseid = req.body.cid;
   try {
     let posts = await DiscussPost.find({cid: courseid});

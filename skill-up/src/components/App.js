@@ -36,10 +36,10 @@ function App() {
         <AuthProvider>
         <Navbar uid = {uid} setUid={setUid} />
           <Switch>
-            <Route exact path = '/course/:cid/discuss' component={Discussion} />
-            <Route exact path = '/course/:cid/discuss/:pid' component={DiscussPost} />
+            <Route exact path = '/courses/:cid/discuss' component={Discussion} />
+            <Route exact path = '/courses/:cid/discuss/:pid' component={DiscussPost} />
             <Route exact path = '/profile' component={Profile} />
-            <Route exact path = '/lecture/add' component={AddLecture} />
+            <Route exact path = '/courses/:cid/addlecture' component={AddLecture} />
             <Route exact path="/" component={Landing}></Route>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />

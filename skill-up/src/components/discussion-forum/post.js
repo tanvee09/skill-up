@@ -70,7 +70,7 @@ export default function DiscussPost(props) {
     if (post) {
       let {content, author, date, _id} = post;
       date = new Date(date)
-      let d = date.getDate() + '/' + date.getMonth() + '/' + date.getYear()
+      let d = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
       return <ListGroup.Item key={_id}>
         <strong className="mr-2">{author}</strong><span className="date-time">{d}</span><br/>
         {content}

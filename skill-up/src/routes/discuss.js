@@ -4,7 +4,7 @@ let {Users} = require('../models/User');
 let {Comment} = require('../models/Comment');
 const { PromiseProvider } = require("mongoose");
 
-router.post('/course/:id/add/post', async (req, res) => {
+router.post('/courses/:id/add/post', async (req, res) => {
   console.log(req.body);
   let {cid, title, content, uid, _id} = req.body;
   try {
@@ -47,7 +47,7 @@ router.post('/add/comment', async (req, res) => {
   }
 });
 
-router.post('/course/:id/getposts', async (req, res) => {
+router.post('/courses/:id/getposts', async (req, res) => {
   let courseid = req.body.cid;
   try {
     let posts = await DiscussPost.find({cid: courseid});

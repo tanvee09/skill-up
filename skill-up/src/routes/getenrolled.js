@@ -6,8 +6,15 @@ router.post("/getenrolled",async (req, res) => {
   try {
       console.log(req.body);
     let courseIds = await Student.find({uid:req.body.uid});
-    console.log(courseIds);
-    // res.send(courses);
+    // console.log(courseIds);
+    let response = [];
+    for(var course of courseIds){
+      let cur = await Course.findById(course.cid,'title uid introduction');
+      console.log(cur);
+      response.push(cur);
+    }
+    // console.log("Response",response);
+    res.send(response);
   } catch (e) {
     console.log(e);
   }

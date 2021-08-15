@@ -13,7 +13,7 @@ export default function Discussion(props) {
   const [addPost, setAddPost] = useState('');
   var PostTitle = '';
   var PostContent = '';
-  const [allDiscussPosts, setAllDiscussPosts] = useState();
+  const [allDiscussPosts, setAllDiscussPosts] = useState([]);
   const [gotPosts, setGotPosts] = useState();
   function handleSubmit(e) {
     e.preventDefault();
@@ -73,9 +73,9 @@ export default function Discussion(props) {
         .then(res => {
             function compare(a, b) {
                 if (a.date < b.date)
-                    return -1;
-                else if (a.date > b.date)
                     return 1;
+                else if (a.date > b.date)
+                    return -1;
                 else
                     return 0;
             }

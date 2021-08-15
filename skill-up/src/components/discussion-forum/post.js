@@ -1,21 +1,82 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Row, Col, Card, Container,ListGroup, InputGroup, Form} from 'react-bootstrap';
 import './../../css/discussion-forum/discussion.css'
 import './../../css/discussion-forum/post.css'
 import profileimg from './../../assets/profile.png'
 import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function DiscussPost() {  
+export default function DiscussPost(props) {  
   const [commentText, setCommentText] = useState('');
+
+  const { currentUser } = useAuth();
+  let uid = currentUser.uid;
+  let courseId = props.match.params.cid;
+  let postId = props.match.params.pid;
+
+  const [PostContent, setPostContent] = useState('');
+  const [PostTitle, setPostTitle] = useState('');
+  const [Username, setUsername] = useState('');
+
+  const [allDiscussPosts, setAllDiscussPosts] = useState([]);
+  const [gotPosts, setGotPosts] = useState();
 
   function handleSubmit(e) {
     e.preventDefault();
     let data = {
-      comment: commentText
+      comment: commentText,
+      uid: uid,
+      cid: courseId,
+      pid: postId
     };
-    axios.post('http://localhost:3000/add/comment', data)
-            .then(response => console.log(response))
+    axios.post('/add/comment', data)
+            .then((response) => {
+              console.log(response)
+              let allpostsd = allDiscussPosts.slice()
+              allpostsd.unshift(response.data)
+              console.log(allpostsd)
+              setAllDiscussPosts(allpostsd)
+            })
             .catch(err => console.log('error --> ', err));
+  }
+
+  useEffect(() => {
+    axios.post('/getcomments', {pid: postId})
+        .then(res => {
+          function compare(a, b) {
+              if (a.date < b.date)
+                  return 1;
+              else if (a.date > b.date)
+                  return -1;
+              else
+                  return 0;
+          }
+          let allposts = res.data;
+          console.log(allposts)
+          setAllDiscussPosts(allposts);
+          setGotPosts(true);
+        })
+        .catch(err => console.log('error->', err));
+    axios.post('/getpost', {pid: postId, uid: uid})
+        .then(res => {
+          setPostContent(res.data.post.content);
+          setPostTitle(res.data.post.title);
+          setUsername(res.data.username);
+        })
+        .catch(err => console.log('error->', err));
+  }, [])
+
+  function createNewPost(post) {
+    if (post) {
+      let {content, author, date, _id} = post;
+      date = new Date(date)
+      let d = date.getDate() + '/' + date.getMonth() + '/' + date.getYear()
+      return <ListGroup.Item key={_id}>
+        <strong className="mr-2">{author}</strong><span className="date-time">{d}</span><br/>
+        {content}
+      </ListGroup.Item>;
+    }
+    return <></>;
   }
   
   return (
@@ -23,14 +84,14 @@ export default function DiscussPost() {
     <div className="discuss post">
     <Container id="post-box">
 		  <Card.Title id="username">
-				<img src={profileimg} alt='Profile' className="profile-image"/> tanvee09
+				<img src={profileimg} alt='Profile' className="profile-image"/> {Username}
 			</Card.Title>
 		  <Card>
         <Card.Header>
-				  Lorem ipsum dolor sit amet
+				  {PostTitle}
         </Card.Header>
         <Card.Body>
-          <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Card.Text>
+          <Card.Text>{PostContent}</Card.Text>
         </Card.Body>
       </Card>
 
@@ -46,30 +107,7 @@ export default function DiscussPost() {
 
 
       <ListGroup variant="flush" className="mt-5">
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong className="mr-2">tanvee09</strong><span className="date-time">Jan 20, 2021</span><br/>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget.
-        </ListGroup.Item>
+        {gotPosts && allDiscussPosts.map(post => createNewPost(post))}
       </ListGroup>
     </Container>
     </div>

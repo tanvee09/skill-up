@@ -21,8 +21,8 @@ export default function Footer() {
                 </div>
                 <div className="col-3-of-3">
                     <div className="footer__copyright">
-                        <p>Built by Skill-Up Systems Pvt. Ltd</p>
-                        <p>Copyright &copy; by  SKILL-UP</p>
+                        <div>Built by Skill-Up Systems Pvt. Ltd</div>
+                        <div>Copyright &copy; by  SKILL-UP</div>
                     </div>
                 </div>
             </div>

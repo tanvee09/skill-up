@@ -1,6 +1,9 @@
 import React from 'react'
 import collage from '../assets/center.jpg'
 import laptop from '../assets/laptop.jpg'
+import carousel1 from '../assets/carousel1.jpg'
+import carousel2 from '../assets/carousel2.jpg'
+import carousel3 from '../assets/carousel3.jpg'
 import block from '../assets/block.jpg'
 import logo from '../assets/books.jpg'
 import {Jumbotron, Card,Carousel} from 'react-bootstrap'
@@ -28,41 +31,28 @@ export default function landing() {
         </Jumbotron>
       </div>
       <div className="carousel-outer">
-      <div className="container">
+      <div className="container container_carousel">
       <Carousel>
         <Carousel.Item>
           <img
-            className=" w-100"
-            src={laptop}
+            className="w-100"
+            src={carousel1}
             alt="learning"
           />
-
-          <Carousel.Caption>
-            <h3>Eyuio</h3>
-            <p>rtyuio</p>
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className=" w-100"
-            src={laptop}
+            className="w-100"
+            src={carousel2}
             alt="Helping"
           />
-            <Carousel.Caption>
-              <h3>ghjk</h3>
-              <p>dfghj</p>
-            </Carousel.Caption>
           </Carousel.Item>
         <Carousel.Item>
           <img
-            className=" w-100"
-            src={block}
+            className="w-100 "
+            src={carousel3}
             alt="Lab Inspection"
           />
-            <Carousel.Caption>
-              <h3 className="text-danger font-weight-bold">motive</h3>
-              <p className="text-danger font-weight-bold">lorem epsom</p>
-            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
@@ -70,7 +60,7 @@ export default function landing() {
       <div>
         <Card className="cards">
           <Card.Header className="card-header">
-            <div className="h1 text-uppercase">How we work</div>
+            <div className="h1 text-uppercase">Reviews</div>
           </Card.Header>
           <Card.Body className="card2">
             <div

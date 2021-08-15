@@ -8,14 +8,6 @@
     background-size: cover;
     /* position: relative; */
 }
-.landing .head
-{
- position: absolute;
-  top: 20%;
-  text-align: center;
-  color:rgb(192, 69, 20);
-  font-size: 50px;
-}
 .landing .heading-primary {
     color: rgb(14, 41, 44);
     text-transform: uppercase;
@@ -57,8 +49,9 @@
       padding-left: 1rem;
   }
   .landing .brown{
-    min-width:300px;
-      background-image:url("../assets/books.jpg");
+    min-width:25rem;
+    max-height: 30rem;
+      background-image:url("../assets/library.jpg");
       background-size: cover;
   }
   .landing .card .card-header{
@@ -90,9 +83,14 @@
 }
 .landing .carousel-outer{
   padding:20px;
-  background-color: #ffb347;
+  display: flex;
+  justify-content: space-around;
+  background-color:#f5f5ef;
 }
 .landing .container{
   box-shadow:none!important;
   height:auto!important;
+}
+.container_carousel{
+  flex:0.6;
 }

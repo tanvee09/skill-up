@@ -29,3 +29,6 @@
    flex-direction: column;
    justify-content: center;
 }
+.footer__copyright div{
+   padding-bottom: 1rem;
+} 

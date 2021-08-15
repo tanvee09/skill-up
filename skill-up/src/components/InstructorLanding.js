@@ -1,7 +1,7 @@
 import { Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useEffect,useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './InstructorLanding.css';
 import CoursePreview from './courses/CoursePreview';
@@ -12,7 +12,6 @@ const InstructorLanding = () => {
     
     async function viewCourses() {
         const uid = currentUser.uid;
-        // console.log(uid);
         let response = await axios.post("/getcourse", {
           uid: uid
         });

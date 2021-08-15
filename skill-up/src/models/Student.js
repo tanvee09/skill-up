@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 const studentSchema = new mongoose.Schema({
     
     uid: {
-        type : mongoose.Schema.Types.ObjectId,
+        type : String,
         ref : Users
     },
     
     cid:{
-        type : mongoose.Schema.Types.ObjectId,
+        type : String,
         ref : Course
     }
 });

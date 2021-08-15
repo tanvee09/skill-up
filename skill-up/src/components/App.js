@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './footer'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { AuthProvider } from "../contexts/AuthContext";
+import { AuthProvider , useAuth } from "../contexts/AuthContext";
 import Discussion from './discussion-forum/discussion';
 import DiscussPost from './discussion-forum/post';
 import Navbar from './navbar'
@@ -18,18 +18,26 @@ import InstructorLanding from './InstructorLanding';
 import StudentLanding from './StudentLanding';
 import PrivateRoute from './PrivateRoute';
 import AddCourse from './AddCourse';
+import { useState } from 'react';
 
 function App() {
+
+  const [uid, setUid] = useState() 
+ /*  const result  = useAuth();
+  const {currentUser} = ''
+  if (result)
+    currentUser = result.currentUser
+  console.log(currentUser , result) */
   const courses = {};
   return (
     <Router>
       
       <div className='app'>
         <AuthProvider>
-        <Navbar />
+        <Navbar uid = {uid} setUid={setUid} />
           <Switch>
-            <Route exact path = '/discuss' component={Discussion} />
-            <Route exact path = '/discuss/:id' component={DiscussPost} />
+            <Route exact path = '/course/:cid/discuss' component={Discussion} />
+            <Route exact path = '/course/:cid/discuss/:pid' component={DiscussPost} />
             <Route exact path = '/profile' component={Profile} />
             <Route exact path = '/lecture/add' component={AddLecture} />
             <Route exact path="/" component={Landing}></Route>
@@ -37,7 +45,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route exact path = '/courses' component={CourseList} />
             <Route exact path = '/courses/:id' component={Course} />
-            <Route path = '/courses' render={ (props) => <CourseList {...props} courses={courses} />} />
+            <PrivateRoute exact path = '/courses/:id' component={ (props) => { <Course {...props}  uid={uid} />} } />
             <PrivateRoute path="/instructorLanding" component={InstructorLanding} />
             <PrivateRoute path="/studentLanding" component={StudentLanding} />
             <PrivateRoute path="/addCourse" component={AddCourse} />

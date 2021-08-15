@@ -151,6 +151,29 @@ router.post("/addLecture", async (req, res) => {
   res.send("received");
 });
 
+router.post('/checkifinstructor', async (req, res) => {
+  let {cid, uid} = req.body;
+  let course = await Course.findById(cid);
+  console.log(course)
+  console.log(course.uid, uid)
+  if (course.uid == uid) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+})
+
+router.post('/checkifenrolled', async (req, res) => {
+  let {cid, uid} = req.body;
+  let s = await Student.findOne({cid: cid, uid:uid});
+  console.log(cid, uid, s)
+  if (s) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+})
+
 function sendTwilioSMS(message, pno) {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;

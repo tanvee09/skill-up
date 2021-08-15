@@ -39,34 +39,41 @@ class Course extends React.Component {
       })
   }
 
+  
   render() {
     const {isInstructor , title, instructor, introduction, Lectures} = this.state;
     let arr = ""
     if(Lectures && Lectures.length > 0){
-        arr = Lectures.map( (lecture) => {
+        let abc = Lectures.map( (lecture) => {
         return (
           <ListGroup.Item>
             <strong className="mr-2">{lecture.title}</strong><span className="date-time">{lecture.date}</span><br/>
               {lecture.content}
           </ListGroup.Item>
           )
+        arr = <>
+          <Link to="/discuss"><button className='btn discussion-btn mt-2' id='submitComment'>Discuss</button></Link>
+          {abc}
+        </>
       })
     }
     else
     {
-      arr = <Form className='my-4' ><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Enroll for the course</button></Form>
+      arr = <Form onSubmit={enrollInCourse} className='my-4' ><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Enroll for the course</button></Form>
     }
     const form = '';
-    const handleSubmit = (e)=>{
-      e.preventDefault();
-      console.log("posting")
-      axios.post('/enroll')
-              .then(response => console.log(response))
-              .catch(err => console.log('error --> ', err));
-    }
     if (isInstructor){ 
       form = "<Link to='/addLecture'> addLecture </Link>"
     }
+
+    function enrollInCourse(e) {
+      e.preventDefault();
+        console.log("posting")
+        axios.post('/enroll')
+                .then(response => console.log(response))
+                .catch(err => console.log('error --> ', err));
+    }
+  
     
     return (
       <>

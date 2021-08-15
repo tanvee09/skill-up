@@ -2,15 +2,20 @@ import "./navbar.css"
 import { useAuth } from '../contexts/AuthContext'
 import {Link} from 'react-router-dom'
 import {Navbar,Nav} from 'react-bootstrap'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 
 
-export default function NavBar() {
+export default function NavBar(props) {
   const { logout } = useAuth();
   const { currentUser } = useAuth();
   const [landing,setLanding] = useState('');
   
+  useEffect(()=> {
+    console.log(currentUser.uid)
+    props.setUid(currentUser.uid)
+  } , [currentUser]) 
+
   async function getLanding (){
     let uid = currentUser.uid;
     axios.post('http://localhost:3000/user/get', {uid: uid})

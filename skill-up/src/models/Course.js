@@ -18,7 +18,6 @@ const lectureSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-
     title: {
         type: String,
         required: true

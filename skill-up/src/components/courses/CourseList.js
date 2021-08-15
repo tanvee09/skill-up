@@ -1,6 +1,8 @@
 import React from 'react';
 import CoursePreview from './CoursePreview';
 import {Container, Form , Navbar, Nav} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {useAuth} from "../../contexts/AuthContext";
 
 
 class CourseList extends React.Component{
@@ -17,8 +19,9 @@ class CourseList extends React.Component{
     }
 
     async componentDidMount(){
+        //const {currentUser} = useAuth()
         console.log("from component did mount");
-        await fetch('/api/courses')
+        await fetch('/courses')
         .then(response => {
             console.log(response);
             response.json().then(courses => this.setState({courses : courses})
@@ -26,15 +29,19 @@ class CourseList extends React.Component{
     }
 
     render() {
-        const {courses ,searchField} = this.state
+        const {courses ,searchField } = this.state
         const filtered = courses.filter((course) => {
             return (
-                course.title.toLowerCase().includes(searchField) /* || course.inst_name.toLowerCase.includes(searchField) */
+                course.title.toLowerCase().includes(searchField) || course.inst_name.toLowerCase.includes(searchField) 
             )
         })
 
         const arr = filtered.map( (course) =>{ 
-                return(<CoursePreview title={course.title} instructor={course.instructor} intro={course.introduction} />)
+                return(
+                    <Link to={`/courses/${course._id}`}>
+                        <CoursePreview uid={course.id} title={course.title} instructor={course.inst_name} intro={course.introduction} enrolled={course.numEnrolled} iid={course.uid} />
+                    </Link>
+                )
         });
 
         console.log(filtered , arr, courses , "render")

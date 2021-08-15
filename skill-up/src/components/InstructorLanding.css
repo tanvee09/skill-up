@@ -14,9 +14,7 @@
     flex: 1;
     margin-top: 2rem;
     width: 90%;
-    max-width: 80rem;
-    display: flex;
-    flex-direction: column;
+    min-height: 20rem;
 }
 
 .instructor-landing .instructor-head{
@@ -31,3 +29,11 @@
     flex: auto;
     flex-direction: column;
 }
+.instructor-list-grid{
+    display: flex;
+    flex-direction: row;
+    overflow:scroll;
+}
+.instructor-list-grid::-webkit-scrollbar {
+    display: none;
+  }

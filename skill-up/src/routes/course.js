@@ -18,7 +18,7 @@
     instructor: "I1",
     intro:"welcome"
   }]*/
-// const date = require('date-and-time');
+const date = require('date-and-time');
 const { Course } = require("../models/Course");
 const { Student } = require("../models/Student");
 const { Instructor } = require("../models/Instructor");
@@ -26,24 +26,24 @@ const { Users } = require('../models/User');
 
 const router = require("express").Router();
 
-router.get("/api/courses", async (req, res) => {
+router.get("/courses", async (req, res) => {
     try {
         Course.find({} ,{'Lectures':0} , async (err ,courses)=>{
           if(!err)
           {
-            console.log("router")
             const req_courses = await courses.map(async (course) => {
               console.log("single" ,course)
+              req_course = JSON.parse(JSON.stringify(course))
               await Users.find({} , (err , user)=>{
-                console.log(typeof(user[0].id) , user[0].id , user[0]._id==course.instructor)
+                console.log(typeof(user[0].uid) , user[0].uid , user[0].uid==course.uid)
               })
-              await Users.findOne({id:course.instructor} , (err, user)=>{
+              await Users.findOne({uid:course.uid} , (err, user)=>{
                 console.log(err , user)
                 if(!err && user!=null)
-                  course["inst_name"] = user.name  
-                  console.log("single" ,course)
+                  req_course["inst_name"] = user.name  
+                  console.log("single" ,req_course)
                 })
-              return course
+              return req_course
             })
             console.log("courses" , req_courses)
             res.send(courses);
@@ -56,11 +56,11 @@ router.get("/api/courses", async (req, res) => {
     }
 });
 
-router.get("api/courses/:id", async (req, res) => {
+router.get("/courses/:id/:uid", async (req, res) => {
     courseid = req.params.id
+    console.log(courseid)
+    userid = req.params.uid
     try {
-      //check authenticated
-        // userid = req.user.id
         isStudent = true
         isInstructor = false
         inst_name = ''
@@ -73,28 +73,30 @@ router.get("api/courses/:id", async (req, res) => {
 
         await Course.findById(courseid , async (err , course)=> {
           req_course = course
-          await User.findById(course.instructor , (err, user)=>{
+          await User.findById(course.uid , (err, user)=>{
             inst_name = user.name
           })
         })
 
-        if (student || instructor)
+        if(!student && !instructor)
         {
-          res.send( {access : true, course : req_course, isInstructor , instructor :{name:inst_name} });
+          req_courses["Lectures"] = [];
         }  
-        else
-          res.send ({access : false})
+        console.log(course)
+        res.send( {course : req_course, isInstructor , instructor :{name:inst_name} });
+
 
     } catch (e) {
       console.log(e);
     }
 });
 
-router.post("api/courses/:id", (req, res)=>{
+router.post("addLecture/:id/:uid", (req, res)=>{
     courseid = req.params.id
+    userid = req.params.uid
     try{
       //userid = req.user.id
-        Instructor.find({userid} , (user , err) => {
+        Users.find({userid} , (user , err) => {
         if (user.id == Course.findbyId(courseid).instructor )
           newLec ={
             topic: req.body.topic,

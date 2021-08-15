@@ -10,10 +10,7 @@ export default function landing() {
     //set photo of background
     <div className="landing w-100 align-content-center justify-content-center">
       <div className="top">
-        <div className="head" >
-          <div className="text-center h1 text-uppercase heading-primary-main ml-5 mt-5"> Skill-up</div>
-          <div className="text-center text-uppercase heading-primary">Learn and grow</div>
-        </div>
+        
       </div>
       <div className="div2" >
         <Jumbotron >

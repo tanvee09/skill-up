@@ -25,9 +25,10 @@ export default function landing() {
               {/* <img  src={logo} alt="some pic" /> */}
             </div>
             <div className="mFarm">
-              <h1 className="text-center text-uppercase">Via Topic</h1>
-              <p className="text-center">
-              A non profit rural upliftment project based on providing essential skills to the rural people deprived of stable internet connection by extending our medium of sharing the relevant content through messaging. The provided courses would provide multiple options to people to explore various domains and push them into finding new ways of making a living, and thus reducing the socio-economical gap between the city and rural population<br />
+              <h1 className="text-center text-uppercase">About Us</h1>
+              <p >
+              A non profit rural upliftment project based on providing essential skills to the rural people deprived of stable internet connection by extending our medium of sharing the relevant content through messaging. </p>
+              <p>The provided courses would provide multiple options to people to explore various domains and push them into finding new ways of making a living, and thus reducing the socio-economical gap between the city and rural population<br />
               </p>
               <Link to="/courses">
                 <Button>

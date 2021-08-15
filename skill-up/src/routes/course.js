@@ -76,6 +76,27 @@ router.get("/api/courses/:id/:uid", async (req, res) => {
     }
 });
 
+router.get("/api/coursespreview/:id", async (req, res) => {
+  courseid = req.params.id
+  console.log(courseid)
+  try {
+      inst_name = ''
+      req_course = {}
+
+      let course = await Course.findById(courseid)
+      req_course = JSON.parse(JSON.stringify(course))
+      let user = await Users.findOne({uid : course.uid});
+      req_course["inst_name"] = user.name
+      req_course["Lectures"] = [];  
+      console.log("Sent", req_course)
+      res.send( {course : req_course});
+
+
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("addLecture/:id/:uid", (req, res)=>{
     courseid = req.params.id
     userid = req.params.uid
@@ -188,7 +209,12 @@ router.post('/checkifenrolled', async (req, res) => {
   if (s) {
     res.send(true);
   } else {
-    res.send(false);
+    let course = await Course.findById({cid: cid, uid:uid});
+    if (course) {
+      res.send(true)
+    } else {
+      res.send(false)
+    }
   }
 })
 

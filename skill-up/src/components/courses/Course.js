@@ -12,8 +12,9 @@ export default function Course(props){
     
     const {currentUser} = useAuth()
     const [course, setcourse] = useState([]);
-    const [isInstructor, setisInstructor] = useState([]);
-    const [enrolled, setEnrolled] = useState([]);
+    const [isInstructor, setisInstructor] = useState(false);
+    const [enrolled, setEnrolled] = useState(false);
+    const [lecturelist, setlecturelist] = useState([])
     
     let history = useHistory();
 
@@ -43,29 +44,21 @@ export default function Course(props){
 
     useEffect(async () => {
         const { id } = props.match.params;
-        const uid = currentUser.uid
-        fetch(`/api/courses/${id}/${uid}`)
-        .then(response => response.json())
-        .then( response => {
-          console.log(response)
-            setcourse(response.course)
-            setisInstructor(response.isInstructor)
-            setEnrolled(response.enrolled)
-            // console.log('lecs', course.Lectures)
-            let arr = []
-            if(isInstructor)
-            {
-              arr = <Link to={'/courses/' + props.match.params.id + '/addlecture'}><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Add Lecture</button></Link>
-            }
-            if(enrolled == false && isInstructor == false)
-            {
-              console.log('in enroll')
-              arr = <Form className='my-4' onSubmit={enroll}><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Enroll for the course</button></Form>
-            }
-            else
-            {
-              if(course.Lectures && course.Lectures.length > 0){
-                  let a = course.Lectures.map( (lecture) => {
+        if (currentUser) {
+          const uid = currentUser.uid;
+          fetch(`/api/courses/${id}/${uid}`)
+          .then(response => response.json())
+          .then( response => {
+              console.log(response)
+              setcourse(response.course)
+              setisInstructor(response.isInstructor)
+              setEnrolled(response.enrolled)
+              
+              let arr = []
+              let lectures = response.course.Lectures
+              
+              if(lectures && lectures.length > 0){
+                let a = lectures.map( (lecture) => {
                   return (
                     <ListGroup.Item>
                       <strong className="mr-2">{lecture.title}</strong><span className="date-time">{lecture.date}</span><br/>
@@ -74,6 +67,8 @@ export default function Course(props){
                     )
                 })
 
+                console.log('aaaa', a)
+
                 arr = <> 
                   <ListGroup variant="flush" className="mt-5">
                     {a}
@@ -81,13 +76,43 @@ export default function Course(props){
                 </>
                 console.log("array", arr)
               }
-            }
-            console.log('arr', arr)
-            setar(arr);
+              console.log('arr', arr)
+              setar(arr);
+            })
+        } else {
+          fetch(`/api/coursespreview/${id}`)
+          .then(response => response.json())
+          .then( response => {
+              console.log(response)
+              setcourse(response.course)
+              
+              let arr = []
+              let lectures = response.course.Lectures
+              
+              if(lectures && lectures.length > 0){
+                let a = lectures.map( (lecture) => {
+                  return (
+                    <ListGroup.Item>
+                      <strong className="mr-2">{lecture.title}</strong><span className="date-time">{lecture.date}</span><br/>
+                        {lecture.content}
+                    </ListGroup.Item>
+                    )
+                })
 
+                console.log('aaaa', a)
 
-
-          })
+                arr = <> 
+                  <ListGroup variant="flush" className="mt-5">
+                    {a}
+                  </ListGroup>
+                </>
+                console.log("array", arr)
+              }
+              console.log('arr', arr)
+              setar(arr);
+            })
+        }
+        
     }, [])
     
     return (
@@ -105,11 +130,11 @@ export default function Course(props){
               <Card.Text>{course.introduction}</Card.Text>
             </Card.Body>
           </Card>
-          <Link to={'/courses/' + props.match.params.id + '/discuss'}>
-            <button className='btn discussion-btn mt-2' id='submitComment'>Go to Discussion Forum</button>            
-          </Link>
+          {(isInstructor || enrolled) && <Link to={'/courses/' + props.match.params.id + '/discuss'}><button className='btn discussion-btn mt-2' id='submitComment'>Go to Discussion Forum</button></Link>}
           <hr/>
-          {ar}
+          {isInstructor && <Link to={'/courses/' + props.match.params.id + '/addlecture'}><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Add Lecture</button></Link>}
+          {!isInstructor && !enrolled && <Form className='my-4' onSubmit={enroll}><button className='btn discussion-btn mt-2' id='submitComment' type='submit'>Enroll for the course</button></Form>}
+          {(isInstructor || enrolled) && ar}
         </Container>
       </div>
     </>

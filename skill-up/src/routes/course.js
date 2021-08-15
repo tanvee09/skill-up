@@ -23,40 +23,11 @@ const { Course } = require("../models/Course");
 const { Student } = require("../models/Student");
 const { Instructor } = require("../models/Instructor");
 const { Users } = require('../models/User');
-
+const ObjectId = require("mongoose").ObjectId
 const router = require("express").Router();
 
 
 
-router.get("/courses", async (req, res) => {
-    try {
-        Course.find({} ,{'Lectures':0} , async (err ,courses)=>{
-          if(!err)
-          {
-            const req_courses = await courses.map(async (course) => {
-              console.log("single" ,course)
-              req_course = JSON.parse(JSON.stringify(course))
-              await Users.find({} , (err , user)=>{
-                console.log(typeof(user[0].uid) , user[0].uid , user[0].uid==course.uid)
-              })
-              await Users.findOne({uid:course.uid} , (err, user)=>{
-                console.log(err , user)
-                if(!err && user!=null)
-                  req_course["inst_name"] = user.name  
-                  console.log("single" ,req_course)
-                })
-              return req_course
-            })
-            console.log("courses" , req_courses)
-            res.send(courses);
-          }  
-          else
-            console.log(err)
-        })
-    } catch (e) {
-        console.log(e);
-    }
-});
 
 router.get("/courses/:id/:uid", async (req, res) => {
     courseid = req.params.id
@@ -119,6 +90,26 @@ router.post("addLecture/:id/:uid", (req, res)=>{
     }
 
 })
+
+router.get("/courses", async (req, res) => {
+  const courses = await Course.find({})
+  // console.log(courses)
+  let req_courses = []
+  for (var course of courses) {
+    req_course = JSON.parse(JSON.stringify(course))
+    let user = await Users.findOne({uid : course.uid});
+    req_course["inst_name"] = user.name;
+    req_courses.push(req_course)
+  }
+  // const req_courses = await courses.map(async (course)=>{
+  //   req_course = JSON.parse(JSON.stringify(course))
+  //   let user = await Users.findOne({uid : course.uid});
+  //   req_course["inst_name"] = user.name;
+  //   return req_course;
+  // })    
+  console.log(req_courses)
+  res.send(req_courses)            
+});
 
 router.post("/addLecture", async (req, res) => {
   console.log(req.body);

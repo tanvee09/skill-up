@@ -23,13 +23,14 @@ class CourseList extends React.Component{
         console.log("from component did mount");
         await fetch('/courses')
         .then(response => {
-            console.log(response);
+            console.log("resp", response);
             response.json().then(courses => this.setState({courses : courses})
         )})
     }
 
     render() {
         const {courses ,searchField } = this.state
+        console.log("InRender", courses)
         const filtered = courses.filter((course) => {
             return (
                 course.title.toLowerCase().includes(searchField) || course.inst_name.toLowerCase.includes(searchField) 

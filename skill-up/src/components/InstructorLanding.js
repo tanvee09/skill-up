@@ -43,17 +43,15 @@ const InstructorLanding = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="instructor-list">
-                    <div className="instructor-list-header">
-                        <div className="instructor-head">
+                <div className="instructor-list-header">
+                    <div className="instructor-view">
+                        <Button onClick={viewCourses}>
                             Your Courses
-                        </div>
-                        <div className="instructor-view">
-                            <Button onClick={viewCourses}>
-                                View
-                            </Button>
-                        </div>
+                        </Button>
                     </div>
+                </div>
+                <div className="instructor-list">
+                    
                     <div className="instructor-list-grid">
                         {/* for loop */}
                         {courses.map(course => (

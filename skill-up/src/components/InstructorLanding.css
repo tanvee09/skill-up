@@ -1,11 +1,12 @@
 
 .instructor-landing {
     margin: auto;
-    height: 70vh;
+    height: 80vh;
     width: 85%;
     justify-content: center;
     display: flex;
-    
+    font-weight: 400;
+    font-size: larger;
 }
 
 .instructor-landing .wrapper{
@@ -16,6 +17,22 @@
     width: 90%;
     min-height: 20rem;
 }
+
+.instructor-landing .instructor-list-header{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.instructor-landing .instructor-head-course{
+ width:fit-content;   
+}
+
+.instructor-landing .instructor-view{
+    width:fit-content;   
+   }
 
 .instructor-landing .instructor-head{
     flex: 0.2;
@@ -33,7 +50,9 @@
     display: flex;
     flex-direction: row;
     overflow:scroll;
+    overflow-y: hidden;
+    /* max-height: 40vh; */
 }
-.instructor-list-grid::-webkit-scrollbar {
+/* .instructor-list-grid::-webkit-scrollbar {
     display: none;
-  }
+  } */

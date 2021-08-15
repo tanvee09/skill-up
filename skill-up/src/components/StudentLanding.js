@@ -30,41 +30,39 @@ const StudentLanding = () => {
 
     return (
         <div className="instructor-landing">
-            <div className="wrapper">
-                <div className="instructor-head">
-                    <div className="instructor-profile">
-                        Welcome {currentUser.email}!(Student)
-                    </div>
-                    <div className="instructor-add">
-                        <Link to="/courses">
-                            <Button>
-                                Find New Course
-                            </Button>
-                        </Link>
-                    </div>
+        <div className="wrapper">
+            <div className="instructor-head">
+                <div className="instructor-profile">
+                    Welcome {currentUser.email}!
                 </div>
-                <div className="instructor-list">
-                    <div className="instructor-list-header">
-                        <div className="instructor-head">
-                            Your Courses
+                <div className="instructor-add">
+                    <Link to="/courses">
+                        <Button>
+                            Discover Courses
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+            <div className="instructor-list-header">
+                <div className="instructor-view">
+                    <Button onClick={viewCourses}>
+                        Your Enrolled Courses
+                    </Button>
+                </div>
+            </div>
+            <div className="instructor-list">
+                
+                <div className="instructor-list-grid">
+                    {/* for loop */}
+                    {courses.map(course => (
+                        <div className="instructor-course">
+                                <CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />
                         </div>
-                        <div className="instructor-view">
-                            <Button onClick={viewCourses}>
-                                View
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="instructor-list-grid">
-                        {/* for loop */}
-                        {courses.map(course => (
-                            <div className="instructor-course">
-                                    <CoursePreview title={course.title} instructor={course.uid} intro={course.introduction} />
-                            </div>
-                        ))}
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

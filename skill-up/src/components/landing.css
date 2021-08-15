@@ -1,12 +1,12 @@
 .landing .top{
     display:flex;
-    height: 70vh;
+    height: 65vh;
     flex-direction: column;
     align-items: center;
-    background-image:linear-gradient(rgba(256,256, 256, 0.6), rgba(256, 256, 256, 0.6)),url("../assets/books.jpg");
-    background-position: top;
+    background-image:url("../assets/welcome-landing.png");
+    background-position:center;
     background-size: cover;
-    position: relative;
+    /* position: relative; */
 }
 .landing .head
 {

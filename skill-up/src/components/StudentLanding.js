@@ -23,19 +23,23 @@ const StudentLanding = () => {
         if(!courses.length)
         {
             const uid = currentUser.uid;
-            let response = await axios.post("/getcourse", {
-            uid: uid
+            await axios.post('./getenrolled',{
+                uid:uid
             });
-            console.log(response);
-            if(response.data==="")
-            {
-            setCourses([]);
-            }
-            else{
-                console.log("Data",response.data);
-                setCourses(JSON.parse(JSON.stringify(response.data)));
-                console.log("Courses",courses);
-            }
+            
+            // let response = await axios.post("/getcourse", {
+            // uid: uid
+            // });
+            // console.log(response);
+            // if(response.data==="")
+            // {
+            // setCourses([]);
+            // }
+            // else{
+            //     console.log("Data",response.data);
+            //     setCourses(JSON.parse(JSON.stringify(response.data)));
+            //     console.log("Courses",courses);
+            // }
         }    
         
       }

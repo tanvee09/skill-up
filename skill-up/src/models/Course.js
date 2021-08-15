@@ -2,8 +2,6 @@ const { Users } = require('./User.js');
 const mongoose = require('mongoose');
 
 const lectureSchema = new mongoose.Schema({
-    _id : String,
-
     title : {
         type : String,
         required : true

@@ -9,7 +9,7 @@ router.post("/getenrolled",async (req, res) => {
     // console.log(courseIds);
     let response = [];
     for(var course of courseIds){
-      let cur = await Course.findById(course.cid,'title uid introduction');
+      let cur = await Course.findById(course.cid);
       console.log(cur);
       response.push(cur);
     }

@@ -51,7 +51,7 @@ export default function DiscussPost() {
 
   if (currentUser) {
     let uid = currentUser.uid;
-    axios.post('http://localhost:3000/user/get', {uid: uid})
+    axios.post('user/get', {uid: uid})
       .then(response => {
         let user = response.data;
         setEmail(user.email);

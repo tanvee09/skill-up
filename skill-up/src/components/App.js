@@ -27,8 +27,8 @@ function App() {
         <AuthProvider>
         <Navbar />
           <Switch>
-            <Route exact path = '/discuss' component={Discussion} />
-            <Route exact path = '/discuss/:id' component={DiscussPost} />
+            <Route exact path = '/course/:cid/discuss' component={Discussion} />
+            <Route exact path = '/course/:cid/discuss/:pid' component={DiscussPost} />
             <Route exact path = '/profile' component={Profile} />
             <Route exact path = '/lecture/add' component={AddLecture} />
             <Route exact path="/" component={Landing}></Route>

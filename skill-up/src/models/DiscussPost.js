@@ -3,11 +3,13 @@ const { Users } = require('./User');
 const { Course } = require('./Course');
 
 const postSchema = new mongoose.Schema({
-    _id : String,
-    author : {
-        type : mongoose.Schema.Types.String,
-        ref = Users,
+    // _id : mongoose.Schema.Types.String,
+    uid : {
+        type : String,
         required : true
+    },
+    author: {
+        type: String
     },
     date :{
         type : Date
@@ -16,9 +18,13 @@ const postSchema = new mongoose.Schema({
         type : String,
         required :true 
     },
+    title: {
+        type: String,
+        required: true
+    },
     cid: {
         type :String,
-        ref = Course
+        ref: Course
     }
 });
 

@@ -4,8 +4,12 @@ import './../../css/discussion-forum/discussion.css';
 import './../../css/discussion-forum/post.css';
 import './../../css/course/addLecture.css';
 import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function AddLecture() {   
+export default function AddLecture(props) {  
+  let cid = props.match.params.cid;
+  const { currentUser } = useAuth();
+  let uid = currentUser.uid;
 
   const [LecTitle, setLecTitle] = useState('');
   const [LecContent, setLecContent] = useState('');
@@ -13,12 +17,13 @@ export default function AddLecture() {
   function handleSubmit(e) {
     e.preventDefault();
     let data = {
-      _id: '123',
+      cid: cid,
+      uid: uid,
       title: LecTitle,
       content: LecContent
     };
     console.log("posting")
-    axios.post('http://localhost:3000/addLecture', data)
+    axios.post('/addLecture', data)
             .then(response => console.log(response))
             .catch(err => console.log('error --> ', err));
   }

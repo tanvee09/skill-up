@@ -32,5 +32,22 @@ router.post("/role", async(req,res) =>{
   }
 })
 
+router.post("/user/get", async(req, res) => {
+  let data = req.body;
+  console.log(data);
+  Users.findOne({uid: data.uid}, (err, user) => {
+      if (err) {
+          console.log('mongo error');
+          res.status(400).send(`Error: ${err}`);
+      } else if (user) {
+          console.log(user);
+          res.json(user);
+      } else {
+          console.log('user not found');
+          res.status(404).send('User not found');
+      }
+  });
+  // res.send('Got')
+})
 
 module.exports = router;

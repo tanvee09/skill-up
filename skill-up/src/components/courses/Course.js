@@ -20,6 +20,7 @@ class Course extends React.Component {
 
   componentDidMount()
   {
+    console.log(this.props)
     const { id } = this.props.match.params;
     const uid = this.props.uid
     fetch(`/api/courses/${id}/${uid}`)

@@ -8,7 +8,8 @@ import carousel2 from '../assets/carousel2.jpg'
 import carousel3 from '../assets/carousel3.jpg'
 import block from '../assets/block.jpg'
 import logo from '../assets/books.jpg'
-import {Jumbotron, Card,Carousel} from 'react-bootstrap'
+import {Jumbotron, Card,Carousel,Button} from 'react-bootstrap'
+import {Link } from "react-router-dom"
 import './landing.css'
 export default function landing() {
   return (
@@ -26,8 +27,13 @@ export default function landing() {
             <div className="mFarm">
               <h1 className="text-center text-uppercase">Via Topic</h1>
               <p className="text-center">
-              Neither mushroom comes in animal or plant kingdom, nor the problems faced by mushroom farmers. <br /> In India,it is one of the most profitable agribusinesses that can be started with minimum investment and space. <br /> Mushroom farming in India is growing gradually as an alternative source of income.<br /> It is time to finally bring the much awaited 'Brown revolution' and also fight against pollution.<br />
+              A non profit rural upliftment project based on providing essential skills to the rural people deprived of stable internet connection by extending our medium of sharing the relevant content through messaging. The provided courses would provide multiple options to people to explore various domains and push them into finding new ways of making a living, and thus reducing the socio-economical gap between the city and rural population<br />
               </p>
+              <Link to="/courses">
+                <Button>
+                  Explore Courses
+                </Button>
+              </Link>
             </div>
           </div>
         </Jumbotron>

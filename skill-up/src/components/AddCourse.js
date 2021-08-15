@@ -3,7 +3,7 @@ import { Form, Button,Alert} from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router";
 import axios from "axios";
-
+import "./addcourse.css"
 
 const AddCourse = () => {
     const titleRef = useRef();

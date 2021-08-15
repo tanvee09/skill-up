@@ -1,0 +1,10 @@
+.addCourse{
+    justify-content: space-around;
+    padding: 2rem 8rem;
+}
+.addcourse input{
+    width:60rem;
+}
+.addcourse .formcontrol{
+    display: flex;
+}

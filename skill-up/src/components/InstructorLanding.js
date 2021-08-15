@@ -23,7 +23,7 @@ const InstructorLanding = () => {
         if(!courses.length)
         {
             const uid = currentUser.uid;
-            let response = await axios.post("/getcourse", {
+            let response = await axios.post("/getinstrcourse", {
             uid: uid
             });
             console.log(response);

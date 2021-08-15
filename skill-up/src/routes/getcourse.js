@@ -1,7 +1,7 @@
 const { Course } = require("../models/Course")
 const router = require("express").Router();
 
-router.post("/getcourse",async (req, res) => {
+router.post("/getinstrcourse",async (req, res) => {
   try {
       console.log(req.body);
     let courses = [];
